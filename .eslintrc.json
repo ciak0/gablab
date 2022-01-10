@@ -13,6 +13,7 @@
   "rules": {
     "max-len": "off",
     "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "react/default-props-match-prop-types": "off"
   }
 }

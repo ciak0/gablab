@@ -1,8 +1,9 @@
 import {
   differenceInMonths, format,
 } from 'date-fns';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, ReactChild } from 'react';
 import pluralize from '../utils/pluralize';
+import Expandable from './Expandable';
 
 export interface ExperienceProps {
   from: Date,
@@ -11,9 +12,11 @@ export interface ExperienceProps {
   location: string,
   company: {
     name: string,
+    office?: string,
     href: string,
     color: string,
   },
+  summary: ReactChild,
   fullTime?: boolean,
   className?: string,
 }
@@ -25,10 +28,11 @@ const Experience: FunctionComponent<ExperienceProps> = ({
   to,
   company,
   location,
-  children,
   fullTime,
+  summary,
+  children,
 }) => {
-  const months = differenceInMonths(to || new Date(), from);
+  const months = differenceInMonths(to || new Date(), from) + 1;
   const years = Math.floor(months / 12);
   const monthsRem = Math.floor(months % 12);
 
@@ -44,6 +48,7 @@ const Experience: FunctionComponent<ExperienceProps> = ({
         >
           {company.name}
         </a>
+        {company.office && ` (${company.office})`}
         {' '}
         &mdash;
         {' '}
@@ -56,16 +61,19 @@ const Experience: FunctionComponent<ExperienceProps> = ({
           {to && format(to, 'MMM yyyy')}
           {!to && 'Present'}
           {' '}
-          {months > 12 && `(${years}${pluralize(' yr', years)} ${monthsRem}${pluralize(' mo', monthsRem)})`}
-          {months <= 12 && `(${months}${pluralize(' mo', months)})`}
+          {months > 12 && `· ${years}${pluralize(' yr', years)} ${monthsRem}${pluralize(' mo', monthsRem)}`}
+          {months <= 12 && `· ${months}${pluralize(' mo', months)}`}
         </time>
       </p>
       <p className="text-neutral-500 text-xs">
         {location}
       </p>
-      <div className="mt-2 font-sans text-sm">
+      <Expandable
+        className="mt-2 font-sans text-sm"
+        summary={summary}
+      >
         {children}
-      </div>
+      </Expandable>
     </div>
   );
 };
