@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react';
-import Image from 'next/image';
 import { differenceInYears } from 'date-fns';
 import gab from '../public/gab.jpg';
 import { DATE_OF_BIRTH, LINKED_IN_URL } from '../constants';
+import LocalImage from './LocalImage';
 
 const Header: FunctionComponent = () => (
   <header className="p-4">
@@ -36,7 +36,7 @@ const Header: FunctionComponent = () => (
     </p>
 
     <div className="py-8 text-center next-img-overflow-visible">
-      <Image
+      <LocalImage
         className="rounded-full border border-gray-300 shadow-neutral-500 shadow-md"
         src={gab}
         alt="Gab"
