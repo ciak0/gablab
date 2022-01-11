@@ -23,6 +23,8 @@ const Header: FunctionComponent = () => (
       <strong>2006</strong>
       .
       <br />
+      I am a
+      {' '}
       <a
         href="https://www.4dayweek.com/"
         target="_blank"

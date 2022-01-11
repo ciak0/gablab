@@ -4,6 +4,7 @@ import {
 import { FunctionComponent, ReactChild } from 'react';
 import pluralize from '../utils/pluralize';
 import Expandable from './Expandable';
+import LocalImage, { LocalImageProps } from './LocalImage';
 
 export interface ExperienceProps {
   from: Date,
@@ -12,9 +13,9 @@ export interface ExperienceProps {
   location: string,
   company: {
     name: string,
-    office?: string,
     href: string,
-    color: string,
+    image: LocalImageProps['src'],
+    office?: string,
   },
   summary: ReactChild,
   fullTime?: boolean,
@@ -37,43 +38,53 @@ const Experience: FunctionComponent<ExperienceProps> = ({
   const monthsRem = Math.floor(months % 12);
 
   return (
-    <div className={className}>
-      <h2 className="font-bold">{title}</h2>
-      <p>
-        <a
-          href={company.href}
-          target="_blank"
-          rel="noreferrer"
-          className={`${company.color} underline`}
-        >
-          {company.name}
-        </a>
-        {company.office && ` (${company.office})`}
-        {' '}
-        &mdash;
-        {' '}
-        {fullTime ? 'Full time' : '4 day week'}
-      </p>
-      <p className="text-neutral-500 text-xs">
-        <time>
-          {format(from, 'MMM yyyy')}
-          {' → '}
-          {to && format(to, 'MMM yyyy')}
-          {!to && 'Present'}
+    <div className={`${className} flex items-start`}>
+      <div>
+        <LocalImage
+          className="rounded"
+          src={company.image}
+          width={48}
+          height={48}
+        />
+      </div>
+      <div className="flex-1 pl-2">
+        <h2 className="font-bold">{title}</h2>
+        <p>
+          <a
+            href={company.href}
+            target="_blank"
+            rel="noreferrer"
+            className="underline"
+          >
+            {company.name}
+          </a>
+          {company.office && ` (${company.office})`}
           {' '}
-          {months > 12 && `· ${years}${pluralize(' yr', years)} ${monthsRem}${pluralize(' mo', monthsRem)}`}
-          {months <= 12 && `· ${months}${pluralize(' mo', months)}`}
-        </time>
-      </p>
-      <p className="text-neutral-500 text-xs">
-        {location}
-      </p>
-      <Expandable
-        className="mt-2 font-sans text-sm"
-        summary={summary}
-      >
-        {children}
-      </Expandable>
+          &mdash;
+          {' '}
+          {fullTime ? 'Full time' : '4 day week'}
+        </p>
+        <p className="text-neutral-500 text-sm">
+          <time>
+            {format(from, 'MMM yyyy')}
+            {' → '}
+            {to && format(to, 'MMM yyyy')}
+            {!to && 'Present'}
+            {' '}
+            {months > 12 && `· ${years}${pluralize(' yr', years)} ${monthsRem}${pluralize(' mo', monthsRem)}`}
+            {months <= 12 && `· ${months}${pluralize(' mo', months)}`}
+          </time>
+        </p>
+        <p className="text-neutral-500 text-xs">
+          {location}
+        </p>
+        <Expandable
+          className="mt-2 font-sans text-sm"
+          summary={summary}
+        >
+          {children}
+        </Expandable>
+      </div>
     </div>
   );
 };

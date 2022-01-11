@@ -1,7 +1,9 @@
 import Image, { ImageProps } from 'next/image';
 import { FunctionComponent } from 'react';
 
-const LocalImage: FunctionComponent<ImageProps> = ({ alt, ...rest }) => (
+export type LocalImageProps = ImageProps;
+
+const LocalImage: FunctionComponent<LocalImageProps> = ({ alt, ...rest }) => (
   <Image
     {...rest}
     alt={alt}

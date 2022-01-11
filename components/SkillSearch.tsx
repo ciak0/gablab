@@ -61,9 +61,9 @@ const SkillSearch: FunctionComponent<SkillSearchProps> = ({
         )}
       </div>
       ?
+      {' '}
       {answer && (
         <span>
-          {' '}
           <i>
             &quot;
             {answer[0]}
@@ -73,6 +73,9 @@ const SkillSearch: FunctionComponent<SkillSearchProps> = ({
           {' '}
           {answer[1]}
         </span>
+      )}
+      {search.length > 0 && !answer && (
+        'No, but I can learn!'
       )}
     </div>
   );

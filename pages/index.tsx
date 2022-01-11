@@ -6,6 +6,12 @@ import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import SkillSearch from '../components/SkillSearch';
 import { SKILLS } from '../constants';
+import dove from '../public/dove.jpg';
+import piksel from '../public/piksel.jpg';
+import justmetrics from '../public/justmetrics.jpg';
+import milestone from '../public/milestone.jpg';
+import txt from '../public/txt.jpg';
+import iwBank from '../public/iw-bank.jpg';
 
 const Home: NextPage = () => (
   <div className="font-mono text-gray-800 bg-slate-200 min-h-screen">
@@ -19,13 +25,13 @@ const Home: NextPage = () => (
 
     <Header />
 
-    <main className="px-4 mx-auto py-8 md:px-0 md:max-w-[64rem]">
+    <main className="px-4 mx-auto py-8 md:max-w-[64rem]">
       <section>
         <h2 className="text-2xl text-orange-600">
           Skills
         </h2>
 
-        <SkillSearch />
+        <SkillSearch className="h-32 sm:h-16 block" />
 
         <Expandable
           className="mt-4"
@@ -51,12 +57,12 @@ const Home: NextPage = () => (
         </h2>
 
         <Experience
-          className="mt-4 pb-4 border-b border-b-neutral-400"
+          className="mt-8 pb-8 border-b border-b-neutral-400"
           title="Senior Software Engineer"
           company={{
             href: 'https://www.dove.it',
-            name: 'Dove.it',
-            color: 'text-pink-500',
+            name: 'Dove.it S.r.l.',
+            image: dove,
           }}
           from={new Date(2019, 2, 3)}
           to={new Date(2021, 11, 31)}
@@ -83,13 +89,13 @@ const Home: NextPage = () => (
         </Experience>
 
         <Experience
-          className="mt-4 pb-4"
+          className="mt-8 pb-8 border-b border-b-neutral-400"
           title="Senior Software Engineer"
           company={{
             href: 'https://www.piksel.com',
             name: 'Piksel Inc.',
             office: 'R&D Office',
-            color: 'text-black',
+            image: piksel,
           }}
           from={new Date(2012, 8, 1)}
           to={new Date(2019, 1, 28)}
@@ -122,6 +128,137 @@ const Home: NextPage = () => (
               and Google Charts in order to deliver customizable dashboards showing real-time statistics on video contents.
             </li>
             <li>Maintenance and development of proprietary CMS solution in Java and Javascript.</li>
+          </ul>
+        </Experience>
+
+        <Experience
+          className="mt-8 pb-8 border-b border-b-neutral-400"
+          title="Co-Founder/CTO"
+          company={{
+            href: 'https://www.linkedin.com/company/just-metrics',
+            name: 'JustMetrics Ltd.',
+            image: justmetrics,
+          }}
+          from={new Date(2016, 3, 1)}
+          to={new Date(2018, 8, 31)}
+          location="Remote"
+          fullTime
+          summary={(
+            <p className="mb-4">
+              Co-founded one of the most accurate Instagram analytics app available on the web.
+              Worked on it, with two friends, as a side project during spare time.
+            </p>
+        )}
+        >
+          As the only tech member of the team, I was responsible for:
+          <ul className="list-disc pl-6 my-2">
+            <li>Writing technical documentation</li>
+            <li>Evaluating and picking the technology stack, estimating costs of service</li>
+            <li>Designing a cost-effective database structure using MongoDB Atlas</li>
+            <li>Designing, writing and testing nearly 36K lines of Javascript using frameworks spanning from Node.js + Express.js on the backend to jQuery, D3, Moment.js on the frontend</li>
+            <li>Designing the responsive UI in collaboration with partners and implementing it with HTML5, CSS3 + Bootstrap</li>
+            <li>Designing, deploying and maintaining the whole service infrastructure on AWS using CodeDeploy, EC2 Autoscaling groups, Elastic Load Balancer, CloudWatch metrics and alerting system</li>
+            <li>Integrating 3rd party API as: Instagram, Mailgun, Google Analytics, Stripe, Intercom</li>
+          </ul>
+          Aside tech duties I&apos;ve also helped in the management of the whole project, from brand design to marketing strategy.
+          <br />
+          <br />
+          Released to public after 1 year of development, it has successfully tracked thousands of Instagram accounts and their posts activity every hour for more than a year with almost zero downtime.
+          <br />
+          <br />
+          Prematurely died after the Facebook&apos; Cambridge Analitica scandal and the consequent Instagram API limitations and termination.
+        </Experience>
+
+        <Experience
+          className="mt-8 pb-8 border-b border-b-neutral-400"
+          title="Software Engineer"
+          company={{
+            href: 'https://milestone.it/',
+            name: 'Milestone S.r.l.',
+            office: 'UI & Game Logic',
+            image: milestone,
+          }}
+          from={new Date(2012, 1, 1)}
+          to={new Date(2012, 7, 31)}
+          location="Milan, Italy"
+          fullTime
+          summary={(
+            <p className="mb-4">
+              Worked mainly on the development of the WRC 3 video-game, shipped on PC, PS4, XBOX
+            </p>
+        )}
+        >
+          <ul className="list-disc pl-6">
+            <li>Development of the menu user interface and game logics for the WRC 3 video-game, using cross-platform proprietary technology (Windows, Xbox 360, PS3) in C++.</li>
+            <li>Debugging and maintenance of the WRC 3 code base in C++.</li>
+            <li>Development of a build process integrated tool for the collection of game data in Python.</li>
+          </ul>
+        </Experience>
+
+        <Experience
+          className="mt-8 pb-8 border-b border-b-neutral-400"
+          title="Software Engineer"
+          company={{
+            href: 'https://www.txtgroup.com/',
+            name: 'TXT e-Solutions S.p.A.',
+            office: 'ICT & Media/Telco',
+            image: txt,
+          }}
+          from={new Date(2008, 10, 1)}
+          to={new Date(2011, 11, 31)}
+          location="Milan, Italy"
+          fullTime
+          summary={(
+            <p className="mb-4">
+              Worked at first in ICT business unit on internal company software.
+              Then moved in the R&amp;D of Media/Telco business unit, on proprietary CMS and Video solutions.
+            </p>
+        )}
+        >
+          <ul className="list-disc pl-6">
+            <li>
+              Design and development of a video player framework in Silverlight C# with SmoothStreaming and DRM PlayReady libraries,
+              customizable to clients needs, development of related backend web service used for the
+              management and release of PlayReady licenses in ASP.NET 3.5 C#.
+            </li>
+            <li>Development of an administration console used for the management of several products, especially encoding systems, on a distributed architecture. Developed in ASP.NET 2.0 C#, JQuery.</li>
+            <li>
+              Development of several modules of an audio-video re-encoding system in C++ COM with Direct Show technology.
+              Copyrighted company&apos;s product finalist at IBC 2009 Amsterdam conference.
+            </li>
+            <li>
+              Development and customization of several Plugins for the Sage SalesLogix CRM in VBScript and using Microsoft SQL Server 2005 \ Oracle 9.1.
+            </li>
+            <li>
+              Development and maintenance of several internal web services.
+              Developed in ASP.NET 2.0 C# 2008 technology and using Microsoft SQL Server 2005.
+            </li>
+          </ul>
+        </Experience>
+
+        <Experience
+          className="mt-8 pb-8"
+          title="Software Engineer"
+          company={{
+            href: 'https://www.iwbank.it/',
+            name: 'IW Bank S.p.A.',
+            office: 'Risk Management',
+            image: iwBank,
+          }}
+          from={new Date(2008, 10, 1)}
+          to={new Date(2011, 11, 31)}
+          location="Milan, Italy"
+          fullTime
+          summary={(
+            <p className="mb-4">
+              First work experience, as a sole programmer in the Risk Management office, while I was completing my bachelor.
+            </p>
+        )}
+        >
+          <ul className="list-disc pl-6">
+            <li>Development of the derivatives clearing system in Java using Oracle 9.1 implementing TIMS and SPAN algorithms with related pricing libraries in C. (not finished)</li>
+            <li>Development of a Matlab compatible library in C for the time series analysis and Monte Carlo simulations, used for the calculation of the company portfolio&apos;s Value-At-Risk.</li>
+            <li>Development of several tools used for the office reporting tasks in VB, MS Access, MS Excel, VBA, C, Java.</li>
           </ul>
         </Experience>
       </section>
