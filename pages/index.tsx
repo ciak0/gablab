@@ -14,7 +14,7 @@ import txt from '../public/txt.jpg';
 import iwBank from '../public/iw-bank.jpg';
 
 const Home: NextPage = () => (
-  <div className="font-mono text-gray-800 bg-slate-200 min-h-screen">
+  <div className="font-mono text-gray-800 bg-neutral-100 min-h-screen">
     <Head>
       <title>Gablab.dev</title>
       <meta name="description" content="Gablab development website" />
@@ -27,8 +27,8 @@ const Home: NextPage = () => (
 
     <main className="px-4 mx-auto py-8 md:max-w-[64rem]">
       <section>
-        <h2 className="text-2xl text-orange-600">
-          Skills
+        <h2 className="text-2xl pb-2 mb-8 text-orange-600 border-b border-b-orange-500">
+          ✨ Skills
         </h2>
 
         <SkillSearch className="h-32 sm:h-16 block" />
@@ -52,12 +52,12 @@ const Home: NextPage = () => (
       </section>
 
       <section className="mt-8">
-        <h2 className="text-2xl text-orange-600">
-          Experience
+        <h2 className="text-2xl pb-2 mb-8 text-orange-600 border-b border-b-orange-500">
+          🔨 Experience
         </h2>
 
         <Experience
-          className="mt-8 pb-8 border-b border-b-neutral-400"
+          className="mb-8"
           title="Senior Software Engineer"
           company={{
             href: 'https://www.dove.it',
@@ -88,8 +88,10 @@ const Home: NextPage = () => (
           </ul>
         </Experience>
 
+        <div id="piksel" className="relative -top-16" />
+
         <Experience
-          className="mt-8 pb-8 border-b border-b-neutral-400"
+          className="mb-8"
           title="Senior Software Engineer"
           company={{
             href: 'https://www.piksel.com',
@@ -132,7 +134,7 @@ const Home: NextPage = () => (
         </Experience>
 
         <Experience
-          className="mt-8 pb-8 border-b border-b-neutral-400"
+          className="mb-8"
           title="Co-Founder/CTO"
           company={{
             href: 'https://www.linkedin.com/company/just-metrics',
@@ -170,7 +172,7 @@ const Home: NextPage = () => (
         </Experience>
 
         <Experience
-          className="mt-8 pb-8 border-b border-b-neutral-400"
+          className="mb-8"
           title="Software Engineer"
           company={{
             href: 'https://milestone.it/',
@@ -196,7 +198,7 @@ const Home: NextPage = () => (
         </Experience>
 
         <Experience
-          className="mt-8 pb-8 border-b border-b-neutral-400"
+          className="mb-8"
           title="Software Engineer"
           company={{
             href: 'https://www.txtgroup.com/',
@@ -237,7 +239,6 @@ const Home: NextPage = () => (
         </Experience>
 
         <Experience
-          className="mt-8 pb-8"
           title="Software Engineer"
           company={{
             href: 'https://www.iwbank.it/',
@@ -261,6 +262,54 @@ const Home: NextPage = () => (
             <li>Development of several tools used for the office reporting tasks in VB, MS Access, MS Excel, VBA, C, Java.</li>
           </ul>
         </Experience>
+      </section>
+
+      <section className="mt-8">
+        <h2 className="text-2xl pb-2 mb-8 text-orange-600 border-b border-b-orange-500">
+          🏆 Patents
+        </h2>
+
+        <p className="mt-8 mb-4">
+          Luckily I had the great opportunity to register two patents back when I worked in the
+          {' '}
+          <a href="#piksel" className="underline">
+            Piksel R&amp;D
+          </a>
+          .
+          Both were co-authored by my managers at that time.
+          You can have a look at them here:
+        </p>
+
+        <ul className="pl-6 list-disc">
+          <li>
+            <strong>Forwarding video content</strong>
+            <br />
+            <time className="text-neutral-500 text-sm">Issued Nov 11, 2020</time>
+            {' '}
+            <a
+              href="https://patents.google.com/patent/US20170325004A1/en"
+              target="_blank"
+              className="underline"
+              rel="noreferrer"
+            >
+              US20170325004A1
+            </a>
+          </li>
+          <li>
+            <strong>Delivering content</strong>
+            <br />
+            <time className="text-neutral-500 text-sm">Issued Aug 25, 2020</time>
+            {' '}
+            <a
+              href="https://patents.google.com/patent/US10755309B2/en"
+              target="_blank"
+              className="underline"
+              rel="noreferrer"
+            >
+              US10755309B2
+            </a>
+          </li>
+        </ul>
       </section>
     </main>
 

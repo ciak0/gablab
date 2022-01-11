@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin, faBitbucket } from '@fortawesome/free-brands-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import logo from '../public/logo.jpg';
 import { LINKED_IN_URL } from '../constants';
@@ -23,6 +23,14 @@ const Navigation: FunctionComponent = () => (
           size="1x"
           className=" text-blue-600"
           icon={faLinkedin}
+        />
+      </a>
+      {' '}
+      <a href="https://bitbucket.org/ciak0/" target="_blank" rel="noreferrer">
+        <FontAwesomeIcon
+          size="1x"
+          className=" text-blue-800"
+          icon={faBitbucket}
         />
       </a>
     </div>

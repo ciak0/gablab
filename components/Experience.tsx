@@ -7,6 +7,7 @@ import Expandable from './Expandable';
 import LocalImage, { LocalImageProps } from './LocalImage';
 
 export interface ExperienceProps {
+  className?: string,
   from: Date,
   to?: Date,
   title: string,
@@ -19,7 +20,6 @@ export interface ExperienceProps {
   },
   summary: ReactChild,
   fullTime?: boolean,
-  className?: string,
 }
 
 const Experience: FunctionComponent<ExperienceProps> = ({
