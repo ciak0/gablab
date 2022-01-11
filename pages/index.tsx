@@ -1,9 +1,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Expandable from '../components/Expandable';
 import Experience from '../components/Experience';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import SkillSearch from '../components/SkillSearch';
+import { SKILLS } from '../constants';
 
 const Home: NextPage = () => (
   <div className="font-mono text-gray-800 bg-slate-200 min-h-screen">
@@ -22,7 +24,25 @@ const Home: NextPage = () => (
         <h2 className="text-2xl text-orange-600">
           Skills
         </h2>
+
         <SkillSearch />
+
+        <Expandable
+          className="mt-4"
+          summary=""
+          expandText="see the full list..."
+        >
+          <ul className="flex gap-1 flex-wrap">
+            {Object.keys(SKILLS).map((skill) => (
+              <li
+                key={skill}
+                className="px-4 inline-block rounded-lg border border-neutral-400 text-sm"
+              >
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </Expandable>
       </section>
 
       <section className="mt-8">

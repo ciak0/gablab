@@ -1,53 +1,43 @@
 import {
-  FunctionComponent, useCallback, useEffect, useState,
+  ChangeEvent,
+  FunctionComponent, useCallback, useMemo, useState,
 } from 'react';
 import { SKILLS } from '../constants';
 import randomize from '../utils/randomize';
+import SelfTypingLabel from './SelfTypingLabel';
 
 export interface SkillSearchProps {
   className?: string
 }
 
+type Answer = [string, string] | undefined;
+
 const SkillSearch: FunctionComponent<SkillSearchProps> = ({
   className,
 }) => {
   const [isFocused, setFocused] = useState(false);
+  const [answer, setAnswer] = useState<Answer>(undefined);
   const [search, setSearch] = useState('');
-  const [fakeSearch, setFakeSearch] = useState('');
+  const randomSkills = useMemo(() => randomize(Object.keys(SKILLS)), []);
 
-  useEffect(() => {
-    let waitTimer: any;
-    let typingTimer: any;
-    const randomSkills = randomize(Object.keys(SKILLS));
-    let currentSkill = 0;
-
-    function typeSkill() {
-      setFakeSearch('');
-
-      let index = 0;
-      typingTimer = setInterval(() => {
-        if (index === randomSkills[currentSkill].length) {
-          clearInterval(typingTimer);
-          currentSkill = (currentSkill + 1) % randomSkills.length;
-          waitTimer = setTimeout(typeSkill, 500);
-          return;
-        }
-
-        setFakeSearch((previous) => previous + randomSkills[currentSkill][index]);
-        index += 1;
-      }, 150);
-    }
-
-    typeSkill();
-    return () => {
-      clearInterval(typingTimer);
-      clearTimeout(waitTimer);
-    };
+  const findAnswer = useCallback((searchValue: string) => {
+    const first = Object.keys(SKILLS).find((skill) => searchValue.length > 0 && skill.toLowerCase().startsWith(searchValue.toLowerCase()));
+    return (first ? [first, SKILLS[first as keyof typeof SKILLS]] : undefined) as Answer;
   }, []);
 
-  const onFocus = useCallback(() => setFocused(true), []);
+  const onFocus = useCallback(() => {
+    setAnswer(findAnswer(search));
+    setFocused(true);
+  }, [findAnswer, search]);
+
   const onBlur = useCallback(() => setFocused(false), []);
-  const onChange = useCallback(({ target: { value } }) => setSearch(value), []);
+  const onChange = useCallback(({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+    setAnswer(findAnswer(value));
+    setSearch(value);
+  }, [findAnswer]);
+  const onSelfTypingChange = useCallback((value: string) => {
+    setAnswer(findAnswer(value));
+  }, [findAnswer]);
 
   return (
     <div className={className}>
@@ -63,12 +53,27 @@ const SkillSearch: FunctionComponent<SkillSearchProps> = ({
           onChange={onChange}
         />
         {!isFocused && !search.length && (
-          <span className="absolute z-10 top-0 left-1 pointer-events-none">
-            {fakeSearch}
-          </span>
+          <SelfTypingLabel
+            values={randomSkills}
+            onValueChange={onSelfTypingChange}
+            className="absolute z-10 top-0 left-1 pointer-events-none"
+          />
         )}
       </div>
       ?
+      {answer && (
+        <span>
+          {' '}
+          <i>
+            &quot;
+            {answer[0]}
+            &quot;
+          </i>
+          ?
+          {' '}
+          {answer[1]}
+        </span>
+      )}
     </div>
   );
 };
