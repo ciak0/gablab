@@ -1,0 +1,11 @@
+image: node:16
+pipelines:
+  default:
+    - step:
+        name: Build and Test
+        caches:
+          - node
+        script:
+          - npm install
+          - npm lint
+          - npm test
