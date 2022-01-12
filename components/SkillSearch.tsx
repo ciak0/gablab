@@ -4,7 +4,7 @@ import {
 } from 'react';
 import { SKILLS } from '../constants';
 import randomize from '../utils/randomize';
-import SelfTypingLabel from './SelfTypingLabel';
+import SelfTypingLabel from './self-typing-label/SelfTypingLabel';
 
 export interface SkillSearchProps {
   className?: string
