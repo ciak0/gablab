@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faBitbucket } from '@fortawesome/free-brands-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import logo from '../public/logo.jpg';
+import logo from '../../public/logo.jpg';
 import { LINKED_IN_URL } from '../../constants';
 import LocalImage from '../local-image/LocalImage';
 
