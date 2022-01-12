@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Header should render correctly 1`] = `
+<div>
+  <header
+    class="p-4"
+  >
+    <p
+      class="text-center"
+    >
+      This is Gab, I am a
+       
+      <strong>
+        37
+      </strong>
+       
+      years old human.
+      <br />
+      I've been writing software since
+       
+      <strong>
+        2001
+      </strong>
+      , professionnally since
+       
+      <strong>
+        2006
+      </strong>
+      .
+      <br />
+      I am a
+       
+      <a
+        class="underline"
+        href="https://www.4dayweek.com/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        4 day week
+      </a>
+       
+      ambassador since 2013.
+    </p>
+    <div
+      class="py-8 text-center next-img-overflow-visible"
+    >
+      <span
+        style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+      >
+        <span
+          style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+        >
+          <img
+            alt=""
+            aria-hidden="true"
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+            style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+          />
+        </span>
+        <img
+          alt="Gab"
+          class="rounded-full border border-gray-300 shadow-neutral-500 shadow-md"
+          data-nimg="intrinsic"
+          decoding="async"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+        />
+        <noscript />
+      </span>
+    </div>
+    <p
+      class="text-center"
+    >
+      Here you can find my CV, feel free to contact me on
+       
+      <a
+        class=" text-blue-600 underline"
+        href="https://www.linkedin.com/in/gabriele-ferrari-a5095b52/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        LinkedIn
+      </a>
+      .
+    </p>
+  </header>
+</div>
+`;
