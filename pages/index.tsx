@@ -1,4 +1,3 @@
-import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Expandable from '../components/expandable/Expandable';
@@ -18,8 +17,9 @@ const Home: NextPage = () => (
   <div className="font-mono text-gray-800 bg-neutral-100 min-h-screen">
     <Head>
       <title>Gablab.dev</title>
-      <meta name="description" content="Gablab development website" />
+      <meta name="description" content="Gablab.dev | Home" />
       <link rel="icon" href="/favicon.ico" />
+      <meta key="og:image" content="/logo.jpg" />
     </Head>
 
     <Navigation />

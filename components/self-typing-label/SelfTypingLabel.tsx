@@ -39,7 +39,10 @@ const SelfTypingLabel: FunctionComponent<SelfTypingLabelProps> = ({
           }
 
           currentValue = (currentValue + 1) % values.length;
-          nextValueTimer = setTimeout(startTyping, idleMillis);
+          if (values.length > 1) {
+            nextValueTimer = setTimeout(startTyping, idleMillis);
+          }
+
           return;
         }
 
