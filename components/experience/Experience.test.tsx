@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react';
+import TestRenderer from 'react-test-renderer';
 import Experience from './Experience';
 
 describe('components/Experience', () => {
   it('should render correctly', () => {
-    const { container } = render(
+    const tree = TestRenderer.create(
       <Experience
         title="Explosive researcher"
         location="US"
@@ -16,11 +16,11 @@ describe('components/Experience', () => {
       </Experience>,
     );
 
-    expect(container).toMatchSnapshot();
+    expect(tree.toJSON()).toMatchSnapshot();
   });
 
   it('should render correctly with full-time and office', () => {
-    const { container } = render(
+    const tree = TestRenderer.create(
       <Experience
         title="Explosive researcher"
         location="US"
@@ -39,6 +39,6 @@ describe('components/Experience', () => {
       </Experience>,
     );
 
-    expect(container).toMatchSnapshot();
+    expect(tree.toJSON()).toMatchSnapshot();
   });
 });

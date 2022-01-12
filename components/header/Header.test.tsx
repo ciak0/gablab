@@ -1,12 +1,10 @@
-import { render } from '@testing-library/react';
+import TestRenderer from 'react-test-renderer';
 import Header from './Header';
 
 describe('components/Header', () => {
   it('should render correctly', () => {
-    const { container } = render(
+    expect(TestRenderer.create(
       <Header />,
-    );
-
-    expect(container).toMatchSnapshot();
+    ).toJSON()).toMatchSnapshot();
   });
 });

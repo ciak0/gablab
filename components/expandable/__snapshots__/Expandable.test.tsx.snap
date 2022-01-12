@@ -1,17 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Expandable should render correctly 1`] = `
-<div>
-  <div
-    class=""
+<div
+  className=""
+>
+  
+  <button
+    className="block mt-4 text-sm text-neutral-500"
+    onClick={[Function]}
+    type="button"
   >
-    
-    <button
-      class="block mt-4 text-sm text-neutral-500"
-      type="button"
-    >
-      ...see more
-    </button>
-  </div>
+    ...see more
+  </button>
 </div>
 `;

@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react';
 import { differenceInYears } from 'date-fns';
 import gab from '../public/gab.jpg';
 import { DATE_OF_BIRTH, LINKED_IN_URL } from '../../constants';
-import LocalImage from '../LocalImage';
+import LocalImage from '../local-image/LocalImage';
 
 const Header: FunctionComponent = () => (
   <header className="p-4">

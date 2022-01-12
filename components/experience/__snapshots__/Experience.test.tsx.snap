@@ -1,167 +1,347 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Experience should render correctly 1`] = `
-<div>
-  <div
-    class=" flex items-start"
-  >
-    <div>
+<div
+  className=" flex items-start"
+>
+  <div>
+    <span
+      style={
+        Object {
+          "background": "none",
+          "border": 0,
+          "boxSizing": "border-box",
+          "display": "inline-block",
+          "height": "initial",
+          "margin": 0,
+          "maxWidth": "100%",
+          "opacity": 1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "initial",
+        }
+      }
+    >
       <span
-        style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+        style={
+          Object {
+            "background": "none",
+            "border": 0,
+            "boxSizing": "border-box",
+            "display": "block",
+            "height": "initial",
+            "margin": 0,
+            "maxWidth": "100%",
+            "opacity": 1,
+            "padding": 0,
+            "width": "initial",
+          }
+        }
       >
-        <span
-          style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-        >
-          <img
-            alt=""
-            aria-hidden="true"
-            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-            style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-          />
-        </span>
         <img
-          class="rounded"
+          alt=""
+          aria-hidden={true}
+          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
+          style={
+            Object {
+              "background": "none",
+              "border": 0,
+              "display": "block",
+              "height": "initial",
+              "margin": 0,
+              "maxWidth": "100%",
+              "opacity": 1,
+              "padding": 0,
+              "width": "initial",
+            }
+          }
+        />
+      </span>
+      <img
+        className="rounded"
+        data-nimg="intrinsic"
+        decoding="async"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        style={
+          Object {
+            "border": "none",
+            "bottom": 0,
+            "boxSizing": "border-box",
+            "display": "block",
+            "height": 0,
+            "left": 0,
+            "margin": "auto",
+            "maxHeight": "100%",
+            "maxWidth": "100%",
+            "minHeight": "100%",
+            "minWidth": "100%",
+            "objectFit": undefined,
+            "objectPosition": undefined,
+            "padding": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": 0,
+          }
+        }
+      />
+      <noscript>
+        <img
+          className="rounded"
           data-nimg="intrinsic"
           decoding="async"
-          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+          loading="lazy"
+          src="acme.jpg"
+          style={
+            Object {
+              "border": "none",
+              "bottom": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "height": 0,
+              "left": 0,
+              "margin": "auto",
+              "maxHeight": "100%",
+              "maxWidth": "100%",
+              "minHeight": "100%",
+              "minWidth": "100%",
+              "objectFit": undefined,
+              "objectPosition": undefined,
+              "padding": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 0,
+            }
+          }
         />
-        <noscript />
-      </span>
-    </div>
-    <div
-      class="flex-1 pl-2"
+      </noscript>
+    </span>
+  </div>
+  <div
+    className="flex-1 pl-2"
+  >
+    <h2
+      className="font-bold"
     >
-      <h2
-        class="font-bold"
+      Explosive researcher
+    </h2>
+    <p>
+      <a
+        className="underline"
+        href="http://acme.co"
+        rel="noreferrer"
+        target="_blank"
       >
-        Explosive researcher
-      </h2>
-      <p>
-        <a
-          class="underline"
-          href="http://acme.co"
-          rel="noreferrer"
-          target="_blank"
-        >
-          ACME Co
-        </a>
+        ACME Co
+      </a>
+       
+      —
+       
+      4 day week
+    </p>
+    <p
+      className="text-neutral-500 text-sm"
+    >
+      <time>
+        Jan 2020
+         → 
+        Dec 2021
          
-        —
-         
-        4 day week
-      </p>
-      <p
-        class="text-neutral-500 text-sm"
+        · 2 yrs 0 mo
+      </time>
+    </p>
+    <p
+      className="text-neutral-500 text-xs"
+    >
+      US
+    </p>
+    <div
+      className="mt-2 font-sans text-sm"
+    >
+      Design and development of Explosive Tennis Balls
+      <button
+        className="block mt-4 text-sm text-neutral-500"
+        onClick={[Function]}
+        type="button"
       >
-        <time>
-          Jan 2020
-           → 
-          Dec 2021
-           
-          · 2 yrs 0 mo
-        </time>
-      </p>
-      <p
-        class="text-neutral-500 text-xs"
-      >
-        US
-      </p>
-      <div
-        class="mt-2 font-sans text-sm"
-      >
-        Design and development of Explosive Tennis Balls
-        <button
-          class="block mt-4 text-sm text-neutral-500"
-          type="button"
-        >
-          ...see more
-        </button>
-      </div>
+        ...see more
+      </button>
     </div>
   </div>
 </div>
 `;
 
 exports[`components/Experience should render correctly with full-time and office 1`] = `
-<div>
-  <div
-    class=" flex items-start"
-  >
-    <div>
+<div
+  className=" flex items-start"
+>
+  <div>
+    <span
+      style={
+        Object {
+          "background": "none",
+          "border": 0,
+          "boxSizing": "border-box",
+          "display": "inline-block",
+          "height": "initial",
+          "margin": 0,
+          "maxWidth": "100%",
+          "opacity": 1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": "initial",
+        }
+      }
+    >
       <span
-        style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+        style={
+          Object {
+            "background": "none",
+            "border": 0,
+            "boxSizing": "border-box",
+            "display": "block",
+            "height": "initial",
+            "margin": 0,
+            "maxWidth": "100%",
+            "opacity": 1,
+            "padding": 0,
+            "width": "initial",
+          }
+        }
       >
-        <span
-          style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-        >
-          <img
-            alt=""
-            aria-hidden="true"
-            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-            style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-          />
-        </span>
         <img
-          class="rounded"
+          alt=""
+          aria-hidden={true}
+          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
+          style={
+            Object {
+              "background": "none",
+              "border": 0,
+              "display": "block",
+              "height": "initial",
+              "margin": 0,
+              "maxWidth": "100%",
+              "opacity": 1,
+              "padding": 0,
+              "width": "initial",
+            }
+          }
+        />
+      </span>
+      <img
+        className="rounded"
+        data-nimg="intrinsic"
+        decoding="async"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        style={
+          Object {
+            "border": "none",
+            "bottom": 0,
+            "boxSizing": "border-box",
+            "display": "block",
+            "height": 0,
+            "left": 0,
+            "margin": "auto",
+            "maxHeight": "100%",
+            "maxWidth": "100%",
+            "minHeight": "100%",
+            "minWidth": "100%",
+            "objectFit": undefined,
+            "objectPosition": undefined,
+            "padding": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": 0,
+          }
+        }
+      />
+      <noscript>
+        <img
+          className="rounded"
           data-nimg="intrinsic"
           decoding="async"
-          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-          style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+          loading="lazy"
+          src="acme.jpg"
+          style={
+            Object {
+              "border": "none",
+              "bottom": 0,
+              "boxSizing": "border-box",
+              "display": "block",
+              "height": 0,
+              "left": 0,
+              "margin": "auto",
+              "maxHeight": "100%",
+              "maxWidth": "100%",
+              "minHeight": "100%",
+              "minWidth": "100%",
+              "objectFit": undefined,
+              "objectPosition": undefined,
+              "padding": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 0,
+            }
+          }
         />
-        <noscript />
-      </span>
-    </div>
-    <div
-      class="flex-1 pl-2"
+      </noscript>
+    </span>
+  </div>
+  <div
+    className="flex-1 pl-2"
+  >
+    <h2
+      className="font-bold"
     >
-      <h2
-        class="font-bold"
+      Explosive researcher
+    </h2>
+    <p>
+      <a
+        className="underline"
+        href="http://acme.co"
+        rel="noreferrer"
+        target="_blank"
       >
-        Explosive researcher
-      </h2>
-      <p>
-        <a
-          class="underline"
-          href="http://acme.co"
-          rel="noreferrer"
-          target="_blank"
-        >
-          ACME Co
-        </a>
-         (Explosive R&D)
+        ACME Co
+      </a>
+       (Explosive R&D)
+       
+      —
+       
+      Full time
+    </p>
+    <p
+      className="text-neutral-500 text-sm"
+    >
+      <time>
+        Jan 2020
+         → 
+        Dec 2021
          
-        —
-         
-        Full time
-      </p>
-      <p
-        class="text-neutral-500 text-sm"
+        · 2 yrs 0 mo
+      </time>
+    </p>
+    <p
+      className="text-neutral-500 text-xs"
+    >
+      US
+    </p>
+    <div
+      className="mt-2 font-sans text-sm"
+    >
+      Design and development of Explosive Tennis Balls
+      <button
+        className="block mt-4 text-sm text-neutral-500"
+        onClick={[Function]}
+        type="button"
       >
-        <time>
-          Jan 2020
-           → 
-          Dec 2021
-           
-          · 2 yrs 0 mo
-        </time>
-      </p>
-      <p
-        class="text-neutral-500 text-xs"
-      >
-        US
-      </p>
-      <div
-        class="mt-2 font-sans text-sm"
-      >
-        Design and development of Explosive Tennis Balls
-        <button
-          class="block mt-4 text-sm text-neutral-500"
-          type="button"
-        >
-          ...see more
-        </button>
-      </div>
+        ...see more
+      </button>
     </div>
   </div>
 </div>

@@ -4,7 +4,7 @@ import {
 } from 'date-fns';
 import pluralize from '../../utils/pluralize';
 import Expandable from '../expandable/Expandable';
-import LocalImage, { LocalImageProps } from '../LocalImage';
+import LocalImage, { LocalImageProps } from '../local-image/LocalImage';
 
 export interface ExperienceProps {
   className?: string,
