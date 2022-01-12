@@ -1,4 +1,4 @@
-import React, {
+import {
   FunctionComponent, ReactChild, useCallback, useState,
 } from 'react';
 
@@ -50,6 +50,7 @@ const Expandable: FunctionComponent<ExpandableProps> = ({
 };
 
 Expandable.defaultProps = {
+  className: '',
   expandText: '...see more',
   collapseText: 'see less',
 };

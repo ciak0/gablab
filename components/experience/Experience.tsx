@@ -1,10 +1,10 @@
-import React, { FunctionComponent, ReactChild } from 'react';
+import type { FunctionComponent, ReactChild } from 'react';
 import {
   differenceInMonths, format,
 } from 'date-fns';
-import pluralize from '../utils/pluralize';
-import Expandable from './expandable/Expandable';
-import LocalImage, { LocalImageProps } from './LocalImage';
+import pluralize from '../../utils/pluralize';
+import Expandable from '../expandable/Expandable';
+import LocalImage, { LocalImageProps } from '../LocalImage';
 
 export interface ExperienceProps {
   className?: string,
@@ -87,6 +87,10 @@ const Experience: FunctionComponent<ExperienceProps> = ({
       </div>
     </div>
   );
+};
+
+Experience.defaultProps = {
+  className: '',
 };
 
 export default Experience;

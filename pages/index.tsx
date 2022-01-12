@@ -2,7 +2,7 @@ import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Expandable from '../components/expandable/Expandable';
-import Experience from '../components/Experience';
+import Experience from '../components/experience/Experience';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import SkillSearch from '../components/SkillSearch';

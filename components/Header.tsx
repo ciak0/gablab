@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 import { differenceInYears } from 'date-fns';
 import gab from '../public/gab.jpg';
 import { DATE_OF_BIRTH, LINKED_IN_URL } from '../constants';
@@ -18,7 +18,7 @@ const Header: FunctionComponent = () => (
       I&apos;ve been writing software since
       {' '}
       <strong>2001</strong>
-      , profesionnally since
+      , professionnally since
       {' '}
       <strong>2006</strong>
       .
