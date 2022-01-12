@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Expandable from '../components/expandable/Expandable';
 import Experience from '../components/experience/Experience';
 import Header from '../components/header/Header';
-import Navigation from '../components/Navigation';
+import Navigation from '../components/navigation/Navigation';
 import SkillSearch from '../components/SkillSearch';
 import { SKILLS } from '../constants';
 import dove from '../public/dove.jpg';
