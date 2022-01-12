@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { differenceInYears } from 'date-fns';
 import gab from '../public/gab.jpg';
 import { DATE_OF_BIRTH, LINKED_IN_URL } from '../constants';

@@ -12,8 +12,24 @@
   },
   "rules": {
     "max-len": "off",
-    "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
     "react/jsx-props-no-spreading": "off",
-    "react/default-props-match-prop-types": "off"
+    "react/default-props-match-prop-types": "off",
+    "import/no-anonymous-default-export": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "**/test/**/*.ts"
+        ]
+      }
+    ]
   }
 }

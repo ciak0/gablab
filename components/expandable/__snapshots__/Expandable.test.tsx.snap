@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Expandable should render correctly 1`] = `
+<div>
+  <div>
+    
+    <button
+      class="block mt-4 text-sm text-neutral-500"
+      type="button"
+    >
+      ...see more
+    </button>
+  </div>
+</div>
+`;

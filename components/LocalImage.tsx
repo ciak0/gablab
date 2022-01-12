@@ -1,5 +1,5 @@
+import React, { FunctionComponent } from 'react';
 import Image, { ImageProps } from 'next/image';
-import { FunctionComponent } from 'react';
 
 export type LocalImageProps = ImageProps;
 

@@ -1,9 +1,9 @@
+import React, { FunctionComponent, ReactChild } from 'react';
 import {
   differenceInMonths, format,
 } from 'date-fns';
-import { FunctionComponent, ReactChild } from 'react';
 import pluralize from '../utils/pluralize';
-import Expandable from './Expandable';
+import Expandable from './expandable/Expandable';
 import LocalImage, { LocalImageProps } from './LocalImage';
 
 export interface ExperienceProps {
