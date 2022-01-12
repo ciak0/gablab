@@ -16,10 +16,10 @@ const Life: NextPage = () => (
 
     <main className="px-4 py-8">
       <SelfTypingParagraphs
-        className="uppercase font-bold"
+        className="font-bold"
         values={[
-          'Wake up, Gab.',
-          'The Matrix has you.',
+          'Wake up, Gab...',
+          'The Matrix has you...',
           'Follow the white rabbit.',
           'Knock, knock, Gab.',
         ]}
