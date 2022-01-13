@@ -6,6 +6,7 @@ export interface SelfTypingParagraphsProps {
   typingMillis?: number,
   idleMillis?: number,
   className?: string,
+  onEnd?: VoidFunction
 }
 
 const SelfTypingParagraphs: FunctionComponent<SelfTypingParagraphsProps> = ({
@@ -13,6 +14,7 @@ const SelfTypingParagraphs: FunctionComponent<SelfTypingParagraphsProps> = ({
   typingMillis,
   idleMillis,
   className,
+  onEnd,
 }) => {
   const [current, setCurrent] = useState(0);
   const onValueChange = useCallback((paragraph) => {
@@ -21,8 +23,14 @@ const SelfTypingParagraphs: FunctionComponent<SelfTypingParagraphsProps> = ({
       return;
     }
 
-    setTimeout(() => setCurrent(found + 1), idleMillis);
-  }, [idleMillis, values]);
+    setTimeout(() => {
+      setCurrent(found + 1);
+
+      if (found === values.length - 1 && onEnd) {
+        onEnd();
+      }
+    }, idleMillis);
+  }, [values, idleMillis, onEnd]);
 
   return (
     <ul className={className}>

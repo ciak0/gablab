@@ -150,6 +150,7 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
 
       lastFrame = Date.now();
       frameTimer = setInterval(frame, 20);
+      onStart();
     }
 
     function jumpOrStart(e: Event) {
@@ -190,7 +191,7 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
   return (
     <div
       ref={viewportRef}
-      className={`${className}relative h-64 overflow-hidden`}
+      className={`${className} relative h-64 overflow-hidden`}
     >
       <div
         style={gab.style}
