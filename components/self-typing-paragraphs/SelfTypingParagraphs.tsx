@@ -1,4 +1,6 @@
-import { FunctionComponent, useCallback, useState } from 'react';
+import {
+  FunctionComponent, useCallback, useMemo, useState,
+} from 'react';
 import SelfTypingLabel from '../self-typing-label/SelfTypingLabel';
 
 export interface SelfTypingParagraphsProps {
@@ -17,6 +19,7 @@ const SelfTypingParagraphs: FunctionComponent<SelfTypingParagraphsProps> = ({
   onEnd,
 }) => {
   const [current, setCurrent] = useState(0);
+  const paragraphs = useMemo(() => values.map((value) => ([value])), [values]);
   const onValueChange = useCallback((paragraph) => {
     const found = values.findIndex((value) => value === paragraph);
     if (found < 0) {
@@ -44,7 +47,7 @@ const SelfTypingParagraphs: FunctionComponent<SelfTypingParagraphsProps> = ({
           {current === index && (
             <>
               <SelfTypingLabel
-                values={[value]}
+                values={paragraphs[index]}
                 typingMillis={typingMillis}
                 onValueChange={onValueChange}
               />

@@ -1,12 +1,10 @@
 import {
-  CSSProperties,
   FunctionComponent, ReactText, useEffect, useRef, useState,
 } from 'react';
 import lerp from '../../utils/lerp';
 import { randomBetween } from '../../utils/random';
 
 export interface GameStripProps {
-  canStart: boolean,
   onStart: VoidFunction,
   onEnd: VoidFunction,
   className?: string
@@ -14,34 +12,27 @@ export interface GameStripProps {
 
 type Character = {
   key: ReactText,
-  index: number,
-  offset?: number,
-  style: CSSProperties
+  x?: number,
+  y?: number,
+  shown: boolean,
 };
 
 const SIZE = 64;
 const VELOCITY = SIZE * 8;
 const JUMP_TIME = 750;
 const JUMP_HEIGHT = SIZE * 3;
-const ENEMIES_RANGE = [SIZE * 5, SIZE * 15];
+const ENEMIES_RANGE = [SIZE * 5, SIZE * 12];
 
 const INITIAL_GAB: Character = {
   key: 'gab',
-  index: 0,
-  style: {
-    bottom: 0,
-  },
+  shown: true,
 };
-const INITIAL_ENEMIES = ([...new Array(3)].map((_, index) => ({
+const INITIAL_ENEMIES: Character[] = ([...new Array(3)].map((_, index) => ({
   key: index,
-  index,
-  style: {
-    display: 'none',
-  },
+  shown: false,
 })));
 
 const GameStrip: FunctionComponent<GameStripProps> = ({
-  canStart,
   onStart,
   onEnd,
   className,
@@ -53,16 +44,32 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
   const [enemies, setEnemies] = useState<Character[]>(INITIAL_ENEMIES);
 
   useEffect(() => {
-    if (!viewportRef.current || !canStart) {
+    if (!viewportRef.current) {
       return;
     }
 
     let frameTimer: any;
-    let gabBottom = 0;
+    let gabY = 0;
     let gabJumpAt: number | undefined;
     let lastFrame: number | undefined;
 
+    function jump(e: Event) {
+      e.preventDefault();
+      if (gabJumpAt) {
+        return;
+      }
+
+      gabY = 0;
+      gabJumpAt = Date.now();
+    }
+
     function stop() {
+      document.removeEventListener('mousedown', jump);
+      document.removeEventListener('mouseup', jump);
+      document.removeEventListener('touchstart', jump);
+      document.removeEventListener('touchend', jump);
+      document.removeEventListener('keydown', jump);
+      document.removeEventListener('keyup', jump);
       clearInterval(frameTimer);
       frameTimer = undefined;
       onEnd();
@@ -77,10 +84,10 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
         const elapsedFromJump = Date.now() - gabJumpAt;
         const percent = Math.max(Math.min(elapsedFromJump / JUMP_TIME, 1), 0);
 
-        gabBottom = lerp(0, JUMP_HEIGHT, percent * 2) - lerp(0, JUMP_HEIGHT, (percent - 0.5) * 2);
+        gabY = lerp(0, JUMP_HEIGHT, percent * 2) - lerp(0, JUMP_HEIGHT, (percent - 0.5) * 2);
 
-        if (gabBottom <= 0) {
-          gabBottom = 0;
+        if (gabY <= 0) {
+          gabY = 0;
           gabJumpAt = undefined;
         }
       }
@@ -99,33 +106,27 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
         return;
       }
 
-      setGab(({ style, ...rest }) => ({
+      setGab(({ ...rest }) => ({
         ...rest,
-        style: {
-          ...style,
-          transform: `translateY(-${gabBottom}px)`,
-        },
+        y: gabY,
       }));
 
       setEnemies((prev) => {
-        const [last] = prev.slice(0).sort((a, b) => +b.offset! - +a.offset!);
+        const [last] = prev.slice(0).sort((a, b) => +b.x! - +a.x!);
 
-        return prev.map((enemy) => {
-          const gone = enemy.offset! < -SIZE;
-          let offset = enemy.offset! - lerp(0, VELOCITY, elapsed / 1e3);
+        return prev.map<Character>((enemy) => {
+          const shown = enemy.x! >= -SIZE;
+          let x = enemy.x! - lerp(0, VELOCITY, elapsed / 1e3);
 
-          if (gone) {
-            const maxOffset = Math.max(last.offset!, width);
-            offset = maxOffset + randomBetween(ENEMIES_RANGE[0], ENEMIES_RANGE[1]);
+          if (!shown) {
+            const maxX = Math.max(last.x!, width);
+            x = maxX + randomBetween(ENEMIES_RANGE[0], ENEMIES_RANGE[1]);
           }
 
           return ({
             ...enemy,
-            offset,
-            style: {
-              transform: `translateX(${offset}px)`,
-              display: (gone ? 'none' : 'block'),
-            },
+            x,
+            shown,
           });
         });
       });
@@ -134,17 +135,21 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
     }
 
     function start() {
-      setEnemies((oldEnemies) => oldEnemies.map((enemy, index) => {
-        const offset = viewportRef.current!.getBoundingClientRect().width
+      document.addEventListener('mousedown', jump);
+      document.addEventListener('mouseup', jump);
+      document.addEventListener('touchstart', jump);
+      document.addEventListener('touchend', jump);
+      document.addEventListener('keydown', jump);
+      document.addEventListener('keyup', jump);
+
+      setEnemies((oldEnemies) => oldEnemies.map<Character>((enemy, index) => {
+        const x = viewportRef.current!.getBoundingClientRect().width
             + (index * randomBetween(ENEMIES_RANGE[0], ENEMIES_RANGE[1]));
 
         return ({
           ...enemy,
-          offset,
-          style: {
-            transform: `translateX(${offset}px)`,
-            display: 'block',
-          },
+          x,
+          shown: true,
         });
       }));
 
@@ -153,58 +158,34 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
       onStart();
     }
 
-    function jumpOrStart(e: Event) {
-      e.preventDefault();
-
-      if (!frameTimer) {
-        start();
-        return;
-      }
-
-      if (gabJumpAt) {
-        return;
-      }
-
-      gabBottom = 0;
-      gabJumpAt = Date.now();
-    }
-
-    document.addEventListener('mousedown', jumpOrStart);
-    document.addEventListener('mouseup', jumpOrStart);
-    document.addEventListener('touchstart', jumpOrStart);
-    document.addEventListener('touchend', jumpOrStart);
-    document.addEventListener('keydown', jumpOrStart);
-    document.addEventListener('keyup', jumpOrStart);
+    start();
 
     // eslint-disable-next-line consistent-return
-    return () => {
-      clearInterval(frameTimer);
-      document.removeEventListener('mousedown', jumpOrStart);
-      document.removeEventListener('mouseup', jumpOrStart);
-      document.removeEventListener('touchstart', jumpOrStart);
-      document.removeEventListener('touchend', jumpOrStart);
-      document.removeEventListener('keydown', jumpOrStart);
-      document.removeEventListener('keyup', jumpOrStart);
-    };
-  }, [canStart, onStart, onEnd]);
+    return stop;
+  }, [onStart, onEnd]);
 
   return (
     <div
       ref={viewportRef}
-      className={`${className} relative h-64 overflow-hidden`}
+      className={`${className} relative w-full h-full overflow-hidden`}
     >
       <div
-        style={gab.style}
+        style={{
+          transform: `${gab.y ? `translateY(${(-gab.y)}px)` : ''}`,
+        }}
         ref={gabRef}
         className="absolute bg-green-600 w-16 h-16 left-20 bottom-0"
       >
         &nbsp;
       </div>
       <ul>
-        {enemies.map(({ key, style }, index) => (
+        {enemies.map(({ key, x, shown }, index) => (
           <li
             key={key}
-            style={style}
+            style={{
+              transform: `${x ? `translateX(${x}px)` : ''}`,
+              display: shown ? 'block' : 'none',
+            }}
             ref={(el) => { enemiesRefs.current[index] = el; }}
             className="absolute bg-red-600 w-16 h-16 bottom-0"
           >
