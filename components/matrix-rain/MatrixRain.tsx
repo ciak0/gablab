@@ -1,6 +1,8 @@
-import { FunctionComponent, useEffect, useRef } from 'react';
+import {
+  FunctionComponent, useEffect, useRef, useState,
+} from 'react';
 
-const letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZ'.split('');
+const letters = '唤醒向上瞎扯这矩阵拥有你跟随白色的兔子敲哈哈'.split('');
 
 export interface MatrixRainProps {
   fontSize: number,
@@ -14,12 +16,15 @@ const MatrixRain: FunctionComponent<MatrixRainProps> = ({
   className,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const elem = canvasRef.current;
     if (!elem) {
       return;
     }
+
+    setIsVisible(false);
 
     const ctx = elem.getContext('2d')!;
     ctx.font = `${fontSize}px sans-serif`;
@@ -52,6 +57,7 @@ const MatrixRain: FunctionComponent<MatrixRainProps> = ({
         drops[i] += 1;
         if (ended && Math.random() > 0.95) {
           drops[i] = 0;
+          setIsVisible(true);
         }
       }
     }
@@ -63,7 +69,13 @@ const MatrixRain: FunctionComponent<MatrixRainProps> = ({
   }, [fontSize, horizontal]);
 
   return (
-    <div className={`${className} relative shadow-inner shadow-black`}>
+    <div
+      className={`
+        ${className}
+        ${isVisible ? 'opacity-100' : 'opacity-0'}
+        relative shadow-inner shadow-black
+      `}
+    >
       <canvas
         ref={canvasRef}
         className="absolute w-full h-full"
