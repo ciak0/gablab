@@ -1,13 +1,26 @@
 import type { FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faBitbucket } from '@fortawesome/free-brands-svg-icons';
-import '@fortawesome/fontawesome-svg-core/styles.css';
 import logo from '../../public/logo.jpg';
 import { LINKED_IN_URL } from '../../constants';
 import LocalImage from '../local-image/LocalImage';
 
-const Navigation: FunctionComponent = () => (
-  <nav className="flex justify-between content-center sticky top-0 z-50 p-4 text-3xl bg-white shadow-sm shadow-neutral-300">
+export interface NavigationProps {
+  fixed?: boolean,
+  className?: string,
+}
+
+const Navigation: FunctionComponent<NavigationProps> = ({
+  fixed,
+  className,
+}) => (
+  <nav
+    className={`
+      ${className}
+      ${fixed ? '' : 'sticky top-0 z-50'}
+      flex justify-between content-center p-4 text-3xl bg-white shadow-sm shadow-neutral-300
+    `}
+  >
     <div className="font-extrabold text-orange-600">
       <LocalImage
         src={logo}
@@ -36,5 +49,10 @@ const Navigation: FunctionComponent = () => (
     </div>
   </nav>
 );
+
+Navigation.defaultProps = {
+  className: '',
+  fixed: false,
+};
 
 export default Navigation;

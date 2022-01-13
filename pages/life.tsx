@@ -76,9 +76,9 @@ const Life: NextPage = () => {
         <meta key="og:image" content="/logo.jpg" />
       </Head>
 
-      <Navigation />
+      <Navigation fixed />
 
-      <main className="px-4 py-8">
+      <main className="px-4 py-4 md:py-8 max-w-[64rem] mx-auto">
         <h2 className="text-2xl font-extrabold flex justify-center">
           {(score <= 0 || isEnded) && (
             <>
@@ -99,10 +99,10 @@ const Life: NextPage = () => {
           )}
         </h2>
 
-        <div className="relative h-72 max-w-[64rem] mx-auto">
+        <div className="relative h-72">
           {shouldStart && (
             <>
-              <div className="absolute z-10 w-full h-full py-2 pr-4">
+              <div className="absolute z-10 w-full h-full py-2 pr-4 opacity-50">
                 <MatrixRain
                   fontSize={8}
                   horizontal
@@ -125,7 +125,7 @@ const Life: NextPage = () => {
             </>
           )}
           {!startedAt && isEnded && (
-            <div className="p-4 max-w-[32rem] mx-auto bg-white rounded text-xl  text-center">
+            <div className="p-4 max-w-[32rem] mx-auto bg-white rounded text-xl text-center">
               <h1 className="text-black">
                 Congrats, you made
                 {' '}
@@ -199,7 +199,7 @@ const Life: NextPage = () => {
         </div>
 
         <SelfTypingParagraphs
-          className="font-bold h-32"
+          className="font-bold mt-4 h-32"
           values={transcript}
         />
       </main>
