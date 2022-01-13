@@ -21,7 +21,7 @@ const SIZE = 64;
 const VELOCITY = SIZE * 8;
 const JUMP_TIME = 750;
 const JUMP_HEIGHT = SIZE * 3;
-const ENEMIES_RANGE = [SIZE * 5, SIZE * 12];
+const ENEMIES_RANGE = [SIZE * 5, SIZE * 10];
 
 const INITIAL_GAB: Character = {
   key: 'gab',
@@ -135,6 +135,8 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
     }
 
     function start() {
+      const { width } = viewportRef.current!.getBoundingClientRect();
+
       document.addEventListener('mousedown', jump);
       document.addEventListener('mouseup', jump);
       document.addEventListener('touchstart', jump);
@@ -142,9 +144,9 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
       document.addEventListener('keydown', jump);
       document.addEventListener('keyup', jump);
 
-      setEnemies((oldEnemies) => oldEnemies.map<Character>((enemy, index) => {
-        const x = viewportRef.current!.getBoundingClientRect().width
-            + (index * randomBetween(ENEMIES_RANGE[0], ENEMIES_RANGE[1]));
+      let x = width;
+      setEnemies((oldEnemies) => oldEnemies.map<Character>((enemy) => {
+        x += randomBetween(ENEMIES_RANGE[0], ENEMIES_RANGE[1]);
 
         return ({
           ...enemy,

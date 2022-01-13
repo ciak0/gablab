@@ -13,6 +13,7 @@ import {
 import GameStrip from '../components/game-strip/GameStrip';
 import Navigation from '../components/navigation/Navigation';
 import SelfTypingParagraphs from '../components/self-typing-paragraphs/SelfTypingParagraphs';
+import pluralize from '../utils/pluralize';
 
 const Life: NextPage = () => {
   const [hasStartedOnce, setStartedOnce] = useState(false);
@@ -80,7 +81,7 @@ const Life: NextPage = () => {
           values={transcript}
         />
 
-        <h2 className="text-xl font-extrabold flex justify-center">
+        <h2 className="text-2xl font-extrabold flex justify-center">
           {(score <= 0 || isEnded) && (
             <>
               &nbsp;
@@ -119,7 +120,9 @@ const Life: NextPage = () => {
                       {score}
                     </strong>
                     {' '}
-                    points!
+                    {pluralize('point', score)}
+                    {' '}
+                    in the gablife!
                     <br />
                     Share it with friends on
                     <br />
@@ -173,7 +176,7 @@ const Life: NextPage = () => {
                   </button>
                 </div>
               )}
-              {!isEnded && (
+              {!hasStartedOnce && (
                 <h1 className="p-8 text-center text-5xl font-extrabold animate-pulse">
                   Press any key, tap or click
                   <br />
