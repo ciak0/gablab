@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import GameStrip from '../components/game-strip/GameStrip';
 import Navigation from '../components/navigation/Navigation';
 import SelfTypingParagraphs from '../components/self-typing-paragraphs/SelfTypingParagraphs';
 
@@ -16,7 +17,7 @@ const Life: NextPage = () => (
 
     <main className="px-4 py-8">
       <SelfTypingParagraphs
-        className="font-bold"
+        className="font-bold h-32"
         values={[
           'Wake up, Gab...',
           'The Matrix has you...',
@@ -25,6 +26,12 @@ const Life: NextPage = () => (
         ]}
       />
 
+      <GameStrip
+        canStart
+        onStart={() => undefined}
+        onEnd={() => undefined}
+        className="mx-auto max-w-[64rem] "
+      />
     </main>
   </div>
 );

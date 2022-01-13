@@ -3,7 +3,7 @@ import {
   FunctionComponent, useCallback, useMemo, useState,
 } from 'react';
 import { SKILLS } from '../constants';
-import randomize from '../utils/randomize';
+import { randomSort } from '../utils/random';
 import SelfTypingLabel from './self-typing-label/SelfTypingLabel';
 
 export interface SkillSearchProps {
@@ -18,7 +18,7 @@ const SkillSearch: FunctionComponent<SkillSearchProps> = ({
   const [isFocused, setFocused] = useState(false);
   const [answer, setAnswer] = useState<Answer>(undefined);
   const [search, setSearch] = useState('');
-  const randomSkills = useMemo(() => randomize(Object.keys(SKILLS)), []);
+  const randomSkills = useMemo(() => randomSort(Object.keys(SKILLS)), []);
 
   const findAnswer = useCallback((searchValue: string) => {
     const first = Object.keys(SKILLS).find((skill) => searchValue.length > 0 && skill.toLowerCase().startsWith(searchValue.toLowerCase()));
