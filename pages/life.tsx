@@ -14,6 +14,8 @@ import GameStrip from '../components/game-strip/GameStrip';
 import Navigation from '../components/navigation/Navigation';
 import SelfTypingParagraphs from '../components/self-typing-paragraphs/SelfTypingParagraphs';
 import pluralize from '../utils/pluralize';
+import rabbit from '../public/rabbit.png';
+import LocalImage from '../components/local-image/LocalImage';
 
 const Life: NextPage = () => {
   const [hasStartedOnce, setStartedOnce] = useState(false);
@@ -76,11 +78,6 @@ const Life: NextPage = () => {
       <Navigation />
 
       <main className="px-4 py-8">
-        <SelfTypingParagraphs
-          className="font-bold h-32"
-          values={transcript}
-        />
-
         <h2 className="text-2xl font-extrabold flex justify-center">
           {(score <= 0 || isEnded) && (
             <>
@@ -101,91 +98,100 @@ const Life: NextPage = () => {
           )}
         </h2>
 
-        <div className="relative h-64">
+        <div className="relative h-72 max-w-[64rem] mx-auto">
           {shouldStart && (
             <GameStrip
               onStart={onStart}
               onEnd={onEnd}
-              className="mx-auto max-w-[64rem]"
             />
           )}
-          {!startedAt && (
-            <div className="absolute bg-black z-20 w-full h-full top-0">
-              {isEnded && (
-                <div className="p-4 w-[32rem] mx-auto bg-white rounded text-xl  text-center">
-                  <h1 className="text-black">
-                    Congrats, you made
-                    {' '}
-                    <strong>
-                      {score}
-                    </strong>
-                    {' '}
-                    {pluralize('point', score)}
-                    {' '}
-                    in the gablife!
-                    <br />
-                    Share it with friends on
-                    <br />
-                    <a
-                      href="https://www.facebook.com/sharer/sharer.php?u=https://gablab.dev/life"
-                      target="_blank"
-                      className="text-blue-600"
-                      rel="noreferrer"
-                    >
-                      <FontAwesomeIcon
-                        size="2x"
-                        icon={faFacebookSquare}
-                      />
-                    </a>
-                    {' '}
-                    <a
-                      href={
-                        `${'https://twitter.com/intent/tweet?text=I+made+'}${score}+points+on+https://gablab.dev/life`
-                      }
-                      target="_blank"
-                      className="text-blue-600"
-                      rel="noreferrer"
-                    >
-                      <FontAwesomeIcon
-                        size="2x"
-                        icon={faTwitterSquare}
-                      />
-                    </a>
-                    {' '}
-                    <a
-                      href="https://www.linkedin.com/shareArticle?mini=true&url=https://gablab.dev/life"
-                      target="_blank"
-                      className="text-blue-600"
-                      rel="noreferrer"
-                    >
-                      <FontAwesomeIcon
-                        size="2x"
-                        icon={faLinkedin}
-                      />
-                    </a>
-                    <br />
-                    or
-                  </h1>
+          {shouldStart && (
+            <span className="absolute bottom-0 right-0 mr-2 animate-bounce">
+              <LocalImage
+                src={rabbit}
+                width={64}
+                height={64}
+              />
+            </span>
+          )}
+          {!startedAt && isEnded && (
+            <div className="p-4 max-w-[32rem] mx-auto bg-white rounded text-xl  text-center">
+              <h1 className="text-black">
+                Congrats, you made
+                {' '}
+                <strong>
+                  {score}
+                </strong>
+                {' '}
+                {pluralize('point', score)}
+                {' '}
+                in the gablife!
+                <br />
+                Share it with friends on
+                <br />
+                <a
+                  href="https://www.facebook.com/sharer/sharer.php?u=https://gablab.dev/life"
+                  target="_blank"
+                  className="text-blue-600"
+                  rel="noreferrer"
+                >
+                  <FontAwesomeIcon
+                    size="2x"
+                    icon={faFacebookSquare}
+                  />
+                </a>
+                {' '}
+                <a
+                  href={
+                          `${'https://twitter.com/intent/tweet?text=I+made+'}${score}+points+on+https://gablab.dev/life`
+                        }
+                  target="_blank"
+                  className="text-blue-600"
+                  rel="noreferrer"
+                >
+                  <FontAwesomeIcon
+                    size="2x"
+                    icon={faTwitterSquare}
+                  />
+                </a>
+                {' '}
+                <a
+                  href="https://www.linkedin.com/shareArticle?mini=true&url=https://gablab.dev/life"
+                  target="_blank"
+                  className="text-blue-600"
+                  rel="noreferrer"
+                >
+                  <FontAwesomeIcon
+                    size="2x"
+                    icon={faLinkedin}
+                  />
+                </a>
+                <br />
+                or
+              </h1>
 
-                  <button
-                    type="button"
-                    className="underline"
-                    onClick={start}
-                  >
-                    Restart!
-                  </button>
-                </div>
-              )}
-              {!hasStartedOnce && (
-                <h1 className="p-8 text-center text-5xl font-extrabold animate-pulse">
-                  Press any key, tap or click
-                  <br />
-                  to start and jump.
-                </h1>
-              )}
+              <button
+                type="button"
+                className="underline"
+                onClick={start}
+              >
+                Restart!
+              </button>
             </div>
           )}
+          {!startedAt && !hasStartedOnce && (
+            <h1 className="p-8 text-center text-5xl font-extrabold animate-pulse">
+              Press any key, tap or click
+              <br />
+              to start and jump.
+            </h1>
+          )}
         </div>
+
+        <SelfTypingParagraphs
+          className="font-bold h-32"
+          values={transcript}
+        />
       </main>
     </div>
   );

@@ -3,6 +3,15 @@ import {
 } from 'react';
 import lerp from '../../utils/lerp';
 import { randomBetween } from '../../utils/random';
+import gabPng from '../../public/gab.png';
+import angry from '../../public/angry.png';
+import bug from '../../public/bug.png';
+import corona from '../../public/corona.png';
+import greedy from '../../public/greedy.png';
+import guard from '../../public/guard.png';
+import necktie from '../../public/necktie.png';
+import poo from '../../public/poo.png';
+import zombie from '../../public/zombie.png';
 
 export interface GameStripProps {
   onStart: VoidFunction,
@@ -14,6 +23,7 @@ type Character = {
   key: ReactText,
   x?: number,
   y?: number,
+  img?: string,
   shown: boolean,
 };
 
@@ -22,9 +32,11 @@ const VELOCITY = SIZE * 8;
 const JUMP_TIME = 750;
 const JUMP_HEIGHT = SIZE * 3;
 const ENEMIES_RANGE = [SIZE * 5, SIZE * 10];
+const ENEMIES_IMG = [angry, bug, corona, greedy, guard, necktie, poo, zombie];
 
 const INITIAL_GAB: Character = {
   key: 'gab',
+  img: gabPng.src,
   shown: true,
 };
 const INITIAL_ENEMIES: Character[] = ([...new Array(3)].map((_, index) => ({
@@ -117,14 +129,17 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
         return prev.map<Character>((enemy) => {
           const shown = enemy.x! >= -SIZE;
           let x = enemy.x! - lerp(0, VELOCITY, elapsed / 1e3);
+          let { img } = enemy;
 
           if (!shown) {
             const maxX = Math.max(last.x!, width);
+            img = ENEMIES_IMG[Math.floor(randomBetween(0, ENEMIES_IMG.length))].src;
             x = maxX + randomBetween(ENEMIES_RANGE[0], ENEMIES_RANGE[1]);
           }
 
           return ({
             ...enemy,
+            img,
             x,
             shown,
           });
@@ -151,6 +166,7 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
         return ({
           ...enemy,
           x,
+          img: ENEMIES_IMG[Math.floor(randomBetween(0, ENEMIES_IMG.length))].src,
           shown: true,
         });
       }));
@@ -174,25 +190,27 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
       <div
         style={{
           transform: `${gab.y ? `translateY(${(-gab.y)}px)` : ''}`,
+          background: `url(${gab.img})`,
         }}
         ref={gabRef}
-        className="absolute bg-green-600 w-16 h-16 left-20 bottom-0"
+        className="absolute w-16 h-24 left-2 bottom-0"
       >
         &nbsp;
       </div>
       <ul>
-        {enemies.map(({ key, x, shown }, index) => (
+        {enemies.map(({
+          key, x, img, shown,
+        }, index) => (
           <li
             key={key}
             style={{
+              background: `url(${img})`,
               transform: `${x ? `translateX(${x}px)` : ''}`,
               display: shown ? 'block' : 'none',
             }}
             ref={(el) => { enemiesRefs.current[index] = el; }}
-            className="absolute bg-red-600 w-16 h-16 bottom-0"
-          >
-            {key}
-          </li>
+            className="absolute bg-red-600 w-16 h-16 bottom-0 block"
+          />
         ))}
       </ul>
     </div>
