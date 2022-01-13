@@ -172,7 +172,7 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
       }));
 
       lastFrame = Date.now();
-      frameTimer = setInterval(frame, 20);
+      frameTimer = setInterval(frame, 33);
       onStart();
     }
 
@@ -193,7 +193,7 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
           background: `url(${gab.img})`,
         }}
         ref={gabRef}
-        className="absolute w-16 h-24 left-2 bottom-0"
+        className="absolute w-16 h-24 left-4 bottom-0"
       >
         &nbsp;
       </div>

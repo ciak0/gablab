@@ -16,6 +16,7 @@ import SelfTypingParagraphs from '../components/self-typing-paragraphs/SelfTypin
 import pluralize from '../utils/pluralize';
 import rabbit from '../public/rabbit.png';
 import LocalImage from '../components/local-image/LocalImage';
+import MatrixRain from '../components/matrix-rain/MatrixRain';
 
 const Life: NextPage = () => {
   const [hasStartedOnce, setStartedOnce] = useState(false);
@@ -100,19 +101,28 @@ const Life: NextPage = () => {
 
         <div className="relative h-72 max-w-[64rem] mx-auto">
           {shouldStart && (
-            <GameStrip
-              onStart={onStart}
-              onEnd={onEnd}
-            />
-          )}
-          {shouldStart && (
-            <span className="absolute bottom-0 right-0 mr-2 animate-bounce">
-              <LocalImage
-                src={rabbit}
-                width={64}
-                height={64}
-              />
-            </span>
+            <>
+              <div className="absolute z-10 w-full h-full py-2 pr-4">
+                <MatrixRain
+                  fontSize={8}
+                  horizontal
+                  className="h-full"
+                />
+              </div>
+              <div className="absolute z-20 w-full h-full">
+                <GameStrip
+                  onStart={onStart}
+                  onEnd={onEnd}
+                />
+              </div>
+              <div className="absolute z-20 bottom-0 right-0 mr-4 animate-bounce">
+                <LocalImage
+                  src={rabbit}
+                  width={64}
+                  height={64}
+                />
+              </div>
+            </>
           )}
           {!startedAt && isEnded && (
             <div className="p-4 max-w-[32rem] mx-auto bg-white rounded text-xl  text-center">
