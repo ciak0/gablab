@@ -6,7 +6,7 @@ import Expandable from '../components/expandable/Expandable';
 import Experience from '../components/experience/Experience';
 import Header from '../components/header/Header';
 import Navigation from '../components/navigation/Navigation';
-import SkillSearch from '../components/SkillSearch';
+import SkillSearch from '../components/skill-search/SkillSearch';
 import { SKILLS } from '../constants';
 import dove from '../public/dove.jpg';
 import piksel from '../public/piksel.jpg';

@@ -2,9 +2,9 @@ import {
   ChangeEvent,
   FunctionComponent, useCallback, useMemo, useState,
 } from 'react';
-import { SKILLS } from '../constants';
-import { randomSort } from '../utils/random/random';
-import SelfTypingLabel from './self-typing-label/SelfTypingLabel';
+import { SKILLS } from '../../constants';
+import { randomSort } from '../../utils/random/random';
+import SelfTypingLabel from '../self-typing-label/SelfTypingLabel';
 
 export interface SkillSearchProps {
   className?: string
@@ -31,10 +31,12 @@ const SkillSearch: FunctionComponent<SkillSearchProps> = ({
   }, [findAnswer, search]);
 
   const onBlur = useCallback(() => setFocused(false), []);
+
   const onChange = useCallback(({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
     setAnswer(findAnswer(value));
     setSearch(value);
   }, [findAnswer]);
+
   const onSelfTypingChange = useCallback((value: string) => {
     setAnswer(findAnswer(value));
   }, [findAnswer]);
