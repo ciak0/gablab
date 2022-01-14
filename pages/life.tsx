@@ -10,7 +10,7 @@ import {
 import GameStrip from '../components/game-strip/GameStrip';
 import Navigation from '../components/navigation/Navigation';
 import SelfTypingParagraphs from '../components/self-typing-paragraphs/SelfTypingParagraphs';
-import pluralize from '../utils/pluralize';
+import pluralize from '../utils/pluralize/pluralize';
 import rabbit from '../public/rabbit.png';
 import LocalImage from '../components/local-image/LocalImage';
 import MatrixRain from '../components/matrix-rain/MatrixRain';

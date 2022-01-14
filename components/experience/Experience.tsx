@@ -2,7 +2,7 @@ import type { FunctionComponent, ReactChild } from 'react';
 import {
   differenceInMonths, format,
 } from 'date-fns';
-import pluralize from '../../utils/pluralize';
+import pluralize from '../../utils/pluralize/pluralize';
 import Expandable from '../expandable/Expandable';
 import LocalImage, { LocalImageProps } from '../local-image/LocalImage';
 
