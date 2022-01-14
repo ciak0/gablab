@@ -19,7 +19,7 @@ const Header: FunctionComponent = () => (
       I&apos;ve been writing software since
       {' '}
       <strong>2001</strong>
-      , professionnally since
+      , professionally since
       {' '}
       <strong>2006</strong>
       .
