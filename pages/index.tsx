@@ -8,6 +8,7 @@ import Header from '../components/header/Header';
 import Navigation from '../components/navigation/Navigation';
 import SkillSearch from '../components/skill-search/SkillSearch';
 import { SKILLS } from '../constants';
+import logo from '../public/logo.jpg';
 import dove from '../public/dove.jpg';
 import piksel from '../public/piksel.jpg';
 import justmetrics from '../public/justmetrics.jpg';
@@ -21,7 +22,7 @@ const Home: NextPage = () => (
       <title>Gablab.dev</title>
       <meta name="description" content="Gablab.dev | Home" />
       <link rel="icon" href="/favicon.ico" />
-      <meta key="og:image" content="/logo.jpg" />
+      <meta name="og:image" content={logo.src} />
     </Head>
 
     <Navigation />

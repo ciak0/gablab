@@ -11,9 +11,10 @@ import GameStrip from '../components/game-strip/GameStrip';
 import Navigation from '../components/navigation/Navigation';
 import SelfTypingParagraphs from '../components/self-typing-paragraphs/SelfTypingParagraphs';
 import pluralize from '../utils/pluralize/pluralize';
-import rabbit from '../public/rabbit.png';
 import LocalImage from '../components/local-image/LocalImage';
 import MatrixRain from '../components/matrix-rain/MatrixRain';
+import gablife from '../public/gablife.jpg';
+import rabbit from '../public/rabbit.png';
 
 const Life: NextPage = () => {
   const [hasStartedOnce, setStartedOnce] = useState(false);
@@ -63,7 +64,7 @@ const Life: NextPage = () => {
         <title>Gablab.dev | gablife GAME</title>
         <meta name="description" content="Gablab.dev | gablife GAME" />
         <link rel="icon" href="/favicon.ico" />
-        <meta key="og:image" content="/gablife.jpg" />
+        <meta name="og:image" content={gablife.src} />
       </Head>
 
       <Navigation fixed />
