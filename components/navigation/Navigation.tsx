@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import type { FunctionComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faBitbucket } from '@fortawesome/free-brands-svg-icons';
-import logo from '../../public/logo.jpg';
+import Link from 'next/link';
+import logo from '../../public/logo.png';
 import { LINKED_IN_URL } from '../../constants';
 import LocalImage from '../local-image/LocalImage';
 
@@ -21,15 +23,20 @@ const Navigation: FunctionComponent<NavigationProps> = ({
       flex justify-between content-center p-4 text-3xl bg-white shadow-sm shadow-neutral-300
     `}
   >
-    <div className="font-extrabold text-orange-600">
-      <LocalImage
-        src={logo}
-        alt="Logo"
-        width={18}
-        height={24}
-      />
-      ablab.dev
-    </div>
+    <Link
+      href="/"
+      passHref
+    >
+      <a className="font-extrabold text-orange-600">
+        <LocalImage
+          src={logo}
+          alt="Logo"
+          width={18}
+          height={24}
+        />
+        ablab.dev
+      </a>
+    </Link>
     <div>
       <a href={LINKED_IN_URL} target="_blank" rel="noreferrer">
         <FontAwesomeIcon

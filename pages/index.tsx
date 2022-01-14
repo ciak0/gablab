@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import Expandable from '../components/expandable/Expandable';
 import Experience from '../components/experience/Experience';
 import Header from '../components/header/Header';
@@ -23,6 +25,26 @@ const Home: NextPage = () => (
     </Head>
 
     <Navigation />
+
+    <div className="p-2 bg-black text-center overflow-hidden">
+      <Link
+        href="/life"
+        passHref
+      >
+        <a
+          className="text-green-500  underline font-extrabold relative"
+        >
+          PLAY THE GABLIFE
+          {' '}
+          GAME!
+          <span className="absolute animate-ping left-0 text-white bg-black">
+            PLAY THE GABLIFE
+            {' '}
+            GAME!
+          </span>
+        </a>
+      </Link>
+    </div>
 
     <Header />
 

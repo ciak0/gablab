@@ -1,7 +1,4 @@
 import {
-  KeyboardEvent,
-  MouseEvent,
-  TouchEvent,
   useCallback, useEffect, useMemo, useState,
 } from 'react';
 import Head from 'next/head';
@@ -31,8 +28,7 @@ const Life: NextPage = () => {
     'Knock, knock, Gab.',
   ]), []);
 
-  const start = useCallback((event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement> | TouchEvent<HTMLElement>) => {
-    event.preventDefault();
+  const start = useCallback(() => {
     setStartedOnce(true);
     setShouldStart(true);
     setIsEnded(false);
@@ -62,42 +58,29 @@ const Life: NextPage = () => {
   }, [startedAt]);
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div
-      className="font-mono text-green-500 bg-black min-h-screen"
-      onMouseDown={!hasStartedOnce ? start : undefined}
-      onKeyDown={!hasStartedOnce ? start : undefined}
-      onTouchStart={!hasStartedOnce ? start : undefined}
-    >
+    <div className="font-mono text-green-500 bg-black min-h-screen">
       <Head>
-        <title>Gablab.dev | gablife</title>
-        <meta name="description" content="Gablab.dev | gablife" />
+        <title>Gablab.dev | gablife GAME</title>
+        <meta name="description" content="Gablab.dev | gablife GAME" />
         <link rel="icon" href="/favicon.ico" />
-        <meta key="og:image" content="/logo.jpg" />
+        <meta key="og:image" content="/gablife.jpg" />
       </Head>
 
       <Navigation fixed />
 
       <main className="px-4 py-4 md:py-8 max-w-[64rem] mx-auto">
+        {startedAt !== undefined && (
         <h2 className="text-2xl font-extrabold flex justify-center">
-          {(score <= 0 || isEnded) && (
-            <>
-              &nbsp;
-            </>
-          )}
-          {score > 0 && !isEnded && (
-            <span className="relative">
-              Score:
-              {' '}
+          <span className="relative">
+            Score:
+            {' '}
+            {score}
+            <span className="absolute animate-ping right-0 top-0">
               {score}
-              {startedAt !== undefined && (
-                <span className="absolute animate-ping right-0 top-0">
-                  {score}
-                </span>
-              )}
             </span>
-          )}
+          </span>
         </h2>
+        )}
 
         <div className="relative h-72">
           {shouldStart && (
@@ -125,7 +108,7 @@ const Life: NextPage = () => {
             </>
           )}
           {!startedAt && isEnded && (
-            <div className="p-4 max-w-[32rem] mx-auto bg-white rounded text-xl text-center">
+            <div className="py-4 max-w-[32rem] mx-auto bg-white rounded text-xl text-center">
               <h1 className="text-black">
                 Congrats, you made
                 {' '}
@@ -152,9 +135,7 @@ const Life: NextPage = () => {
                 </a>
                 {' '}
                 <a
-                  href={
-                          `${'https://twitter.com/intent/tweet?text=I+made+'}${score}+points+on+https://gablab.dev/life`
-                        }
+                  href={`${'https://twitter.com/intent/tweet?text=I+made+'}${score}+points+on+https://gablab.dev/life`}
                   target="_blank"
                   className="text-blue-600"
                   rel="noreferrer"
@@ -166,7 +147,7 @@ const Life: NextPage = () => {
                 </a>
                 {' '}
                 <a
-                  href="https://www.linkedin.com/shareArticle?mini=true&url=https://gablab.dev/life"
+                  href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://gablab.dev/life"
                   target="_blank"
                   className="text-blue-600"
                   rel="noreferrer"
@@ -177,24 +158,44 @@ const Life: NextPage = () => {
                   />
                 </a>
                 <br />
-                or
+                <span className="portrait:hidden">
+                  or
+                </span>
               </h1>
 
               <button
                 type="button"
-                className="underline"
+                className="underline portrait:hidden"
                 onClick={start}
               >
                 Restart!
               </button>
+              <p className="mt-4 landscape:hidden">
+                This experience is designed to be viewed in landscape.
+                Please rotate your device to restart.
+              </p>
             </div>
           )}
           {!startedAt && !hasStartedOnce && (
-            <h1 className="p-8 text-center text-5xl font-extrabold animate-pulse">
-              Press any key, tap or click
-              <br />
-              to start and jump.
-            </h1>
+            <>
+              <h1 className="py-4 text-center text-2xl lg:text-4xl font-extrabold animate-pulse portrait:hidden">
+                Press any key, tap or click
+                <br />
+                to jump.
+                <br />
+                <button
+                  type="button"
+                  className="underline"
+                  onClick={start}
+                >
+                  Click here to start!
+                </button>
+              </h1>
+              <h1 className="py-4 text-center text-2xl landscape:hidden">
+                This experience is designed to be viewed in landscape.
+                Please rotate your device to start.
+              </h1>
+            </>
           )}
         </div>
 

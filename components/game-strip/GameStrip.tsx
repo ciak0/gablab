@@ -23,6 +23,7 @@ type Character = {
   key: ReactText,
   x?: number,
   y?: number,
+  deg?: number,
   img?: string,
   shown: boolean,
 };
@@ -33,6 +34,7 @@ const JUMP_TIME = 750;
 const JUMP_HEIGHT = SIZE * 3;
 const ENEMIES_RANGE = [SIZE * 5, SIZE * 10];
 const ENEMIES_IMG = [angry, bug, corona, greedy, guard, necktie, poo, zombie];
+const COLLISION_GRACE = 4;
 
 const INITIAL_GAB: Character = {
   key: 'gab',
@@ -60,19 +62,21 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
       return;
     }
 
+    let y = 0;
+    let deg = 0;
+    let jumpAt: number | undefined;
     let frameTimer: any;
-    let gabY = 0;
-    let gabJumpAt: number | undefined;
     let lastFrame: number | undefined;
 
     function jump(e: Event) {
       e.preventDefault();
-      if (gabJumpAt) {
+      if (jumpAt) {
         return;
       }
 
-      gabY = 0;
-      gabJumpAt = Date.now();
+      y = 0;
+      deg = 0;
+      jumpAt = Date.now();
     }
 
     function stop() {
@@ -91,26 +95,15 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
       const elapsed = Date.now() - lastFrame!;
       const gabBB = gabRef.current!.getBoundingClientRect();
       const { width } = viewportRef.current!.getBoundingClientRect();
-
-      if (gabJumpAt) {
-        const elapsedFromJump = Date.now() - gabJumpAt;
-        const percent = Math.max(Math.min(elapsedFromJump / JUMP_TIME, 1), 0);
-
-        gabY = lerp(0, JUMP_HEIGHT, percent * 2) - lerp(0, JUMP_HEIGHT, (percent - 0.5) * 2);
-
-        if (gabY <= 0) {
-          gabY = 0;
-          gabJumpAt = undefined;
-        }
-      }
-
       const collidedWith = enemiesRefs.current.find((enemyEl) => {
         if (!enemyEl) {
           return false;
         }
 
         const enemyBB = enemyEl.getBoundingClientRect();
-        return gabBB.left <= enemyBB.right && gabBB.right >= enemyBB.left && gabBB.bottom >= enemyBB.top;
+        return gabBB.left <= enemyBB.right - COLLISION_GRACE
+          && gabBB.right >= enemyBB.left + COLLISION_GRACE
+          && gabBB.bottom >= enemyBB.top + COLLISION_GRACE;
       });
 
       if (collidedWith) {
@@ -118,9 +111,24 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
         return;
       }
 
+      if (jumpAt) {
+        const elapsedFromJump = Date.now() - jumpAt;
+        const percent = Math.max(Math.min(elapsedFromJump / JUMP_TIME, 1), 0);
+
+        y = lerp(0, JUMP_HEIGHT, percent * 2) - lerp(0, JUMP_HEIGHT, (percent - 0.5) * 2);
+        deg = lerp(0, 360, percent);
+
+        if (y <= 0) {
+          y = 0;
+          deg = 0;
+          jumpAt = undefined;
+        }
+      }
+
       setGab(({ ...rest }) => ({
         ...rest,
-        y: gabY,
+        y,
+        deg,
       }));
 
       setEnemies((prev) => {
@@ -189,11 +197,14 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
     >
       <div
         style={{
-          transform: `${gab.y ? `translateY(${(-gab.y)}px)` : ''}`,
+          transform: `
+            ${gab.y ? `translateY(${(-gab.y)}px)` : ''}
+            ${gab.deg ? ` rotate(${(gab.deg)}deg)` : ''}
+          `,
           background: `url(${gab.img})`,
         }}
         ref={gabRef}
-        className="absolute w-16 h-24 left-4 bottom-0"
+        className="absolute w-16 h-24 left-8 bottom-0"
       >
         &nbsp;
       </div>
@@ -209,7 +220,7 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
               display: shown ? 'block' : 'none',
             }}
             ref={(el) => { enemiesRefs.current[index] = el; }}
-            className="absolute bg-red-600 w-16 h-16 bottom-0 block"
+            className="absolute w-16 h-16 bottom-0 block"
           />
         ))}
       </ul>
