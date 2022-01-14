@@ -2,10 +2,17 @@
 
 exports[`components/Navigation should render correctly 1`] = `
 <nav
-  className="flex justify-between content-center sticky top-0 z-50 p-4 text-3xl bg-white shadow-sm shadow-neutral-300"
+  className="
+      
+      sticky top-0 z-50
+      flex justify-between content-center p-4 text-3xl bg-white shadow-sm shadow-neutral-300
+    "
 >
-  <div
+  <a
     className="font-extrabold text-orange-600"
+    href="/"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
   >
     <span
       style={
@@ -121,7 +128,7 @@ exports[`components/Navigation should render correctly 1`] = `
       </noscript>
     </span>
     ablab.dev
-  </div>
+  </a>
   <div>
     <a
       href="https://www.linkedin.com/in/gabriele-ferrari-a5095b52/"
