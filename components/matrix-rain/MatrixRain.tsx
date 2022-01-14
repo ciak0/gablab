@@ -1,8 +1,7 @@
 import {
-  FunctionComponent, useEffect, useRef, useState,
+  FunctionComponent, useEffect, useRef,
 } from 'react';
-
-const letters = '唤醒向上瞎扯这矩阵拥有你跟随白色的兔子敲哈哈'.split('');
+import MatrixRainRenderer from './Renderer';
 
 export interface MatrixRainProps {
   fontSize: number,
@@ -15,73 +14,47 @@ const MatrixRain: FunctionComponent<MatrixRainProps> = ({
   horizontal,
   className,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const elem = canvasRef.current;
-    if (!elem) {
+    const container = containerRef.current;
+    const element = canvasRef.current;
+    if (!container || !element) {
       return;
     }
 
-    setIsVisible(false);
+    const context = element.getContext('2d')!;
+    const bbox = container.getBoundingClientRect();
+    element.width = bbox.width;
+    element.height = bbox.height;
+    context.font = `${fontSize}px sans-serif`;
 
-    const ctx = elem.getContext('2d')!;
-    ctx.font = `${fontSize}px sans-serif`;
-    const { width, height } = elem.getBoundingClientRect();
-    const xAxis = horizontal ? height : width;
-    const yAxis = horizontal ? width : height;
+    const renderer = new MatrixRainRenderer(
+      context,
+      bbox,
+      {
+        horizontal: horizontal ?? false,
+        fontSize,
+      },
+    );
 
-    const columns = xAxis / fontSize;
-
-    const drops: number[] = [];
-    for (let i = 0; i < columns; i += 1) {
-      drops[i] = 1;
-    }
-
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, .1)';
-      ctx.fillRect(0, 0, width, height);
-
-      for (let i = 0; i < drops.length; i += 1) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-        const actualX = horizontal ? height - y : x;
-        const actualY = horizontal ? x : y;
-        const ended = horizontal ? actualX < 0 : actualY > yAxis;
-
-        ctx.fillStyle = '#0f0';
-        ctx.fillText(text, actualX, actualY);
-
-        drops[i] += 1;
-        if (ended && Math.random() > 0.95) {
-          drops[i] = 0;
-          setIsVisible(true);
-        }
-      }
-    }
-
-    const drawTimer = setInterval(draw, 33);
+    const frameTimer = setInterval(renderer.frame, 33);
 
     // eslint-disable-next-line consistent-return
-    return () => clearInterval(drawTimer);
+    return () => clearInterval(frameTimer);
   }, [fontSize, horizontal]);
 
   return (
     <div
-      className={`
-        ${className}
-        ${isVisible ? 'opacity-100' : 'opacity-0'}
-        relative shadow-inner shadow-black
-      `}
+      ref={containerRef}
+      className={`${className} relative`}
     >
       <canvas
         ref={canvasRef}
-        className="absolute w-full h-full"
+        className="absolute"
       />
     </div>
-
   );
 };
 

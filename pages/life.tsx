@@ -87,7 +87,7 @@ const Life: NextPage = () => {
             <>
               <div className="absolute z-10 w-full h-full py-2 pr-4 opacity-50">
                 <MatrixRain
-                  fontSize={8}
+                  fontSize={20}
                   horizontal
                   className="h-full"
                 />
