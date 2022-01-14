@@ -2,7 +2,7 @@ import {
   FunctionComponent, ReactText, useEffect, useRef, useState,
 } from 'react';
 import lerp from '../../utils/lerp/lerp';
-import { randomBetween } from '../../utils/random';
+import { randomBetween } from '../../utils/random/random';
 import gabPng from '../../public/gab.png';
 import angry from '../../public/angry.png';
 import bug from '../../public/bug.png';

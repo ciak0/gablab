@@ -3,7 +3,7 @@ import {
   FunctionComponent, useCallback, useMemo, useState,
 } from 'react';
 import { SKILLS } from '../constants';
-import { randomSort } from '../utils/random';
+import { randomSort } from '../utils/random/random';
 import SelfTypingLabel from './self-typing-label/SelfTypingLabel';
 
 export interface SkillSearchProps {
