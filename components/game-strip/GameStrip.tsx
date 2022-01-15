@@ -37,7 +37,8 @@ const GAB_HEIGHT = 96;
 const VELOCITY = SIZE * 8;
 const JUMP_TIME = 750;
 const JUMP_HEIGHT = SIZE * 3;
-const ENEMIES_RANGE = [SIZE * 5, SIZE * 10];
+const ENEMIES = 4;
+const ENEMIES_RANGE = [SIZE * 4, SIZE * 10];
 const ENEMIES_IMG = [angry, bug, corona, greedy, guard, necktie, poo, zombie];
 
 const INITIAL_GAB: Character = {
@@ -45,7 +46,8 @@ const INITIAL_GAB: Character = {
   img: gabPng.src,
   shown: true,
 };
-const INITIAL_ENEMIES: Character[] = ([...new Array(3)].map((_, index) => ({
+
+const INITIAL_ENEMIES: Character[] = ([...new Array(ENEMIES)].map((_, index) => ({
   key: index,
   shown: false,
 })));
