@@ -12,6 +12,9 @@ import guard from '../../public/guard.png';
 import necktie from '../../public/necktie.png';
 import poo from '../../public/poo.png';
 import zombie from '../../public/zombie.png';
+import {
+  degToRad, getCenter, isPointInRect, rotateRect,
+} from '../../utils/geom/geom';
 
 export interface GameStripProps {
   onStart: VoidFunction,
@@ -29,12 +32,13 @@ type Character = {
 };
 
 const SIZE = 64;
+const GAB_WIDTH = 64;
+const GAB_HEIGHT = 96;
 const VELOCITY = SIZE * 8;
 const JUMP_TIME = 750;
 const JUMP_HEIGHT = SIZE * 3;
 const ENEMIES_RANGE = [SIZE * 5, SIZE * 10];
 const ENEMIES_IMG = [angry, bug, corona, greedy, guard, necktie, poo, zombie];
-const COLLISION_GRACE = 4;
 
 const INITIAL_GAB: Character = {
   key: 'gab',
@@ -93,17 +97,22 @@ const GameStrip: FunctionComponent<GameStripProps> = ({
 
     function frame() {
       const elapsed = Date.now() - lastFrame!;
-      const gabBB = gabRef.current!.getBoundingClientRect();
       const { width } = viewportRef.current!.getBoundingClientRect();
+
+      const gabBB = gabRef.current!.getBoundingClientRect();
+      const gabCenter = getCenter(gabBB);
+      const gabVertices = rotateRect(
+        new DOMRect(gabCenter.x - (GAB_WIDTH / 2), gabCenter.y - (GAB_HEIGHT / 2), GAB_WIDTH, GAB_HEIGHT),
+        degToRad(deg),
+      );
+
       const collidedWith = enemiesRefs.current.find((enemyEl) => {
         if (!enemyEl) {
           return false;
         }
 
         const enemyBB = enemyEl.getBoundingClientRect();
-        return gabBB.left <= enemyBB.right - COLLISION_GRACE
-          && gabBB.right >= enemyBB.left + COLLISION_GRACE
-          && gabBB.bottom >= enemyBB.top + COLLISION_GRACE;
+        return gabVertices.find((vertex) => isPointInRect(vertex, enemyBB)) !== undefined;
       });
 
       if (collidedWith) {
