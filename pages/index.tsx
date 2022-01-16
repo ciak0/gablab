@@ -93,11 +93,11 @@ const Home: NextPage = () => (
           location="Milan, Italy + Remote"
           summary={(
             <p className="mb-4">
-              Helping creating the next-gen Italian proptech company.
+              I worked for dove.it since its foundation as a Full Stack Engineer, in a small team of 5, managed directly by the CTO.
               <br />
               <br />
-              I am responsible, with my peers, of designing, developing and testing the whole technology stack in
-              a CI/CD environment with a DevOps approach.
+              I was responsible, with my peers, for designing, developing, and testing the whole technology stack.
+              Aside from tech duties we were involved in the whole product design process, we have established our Agile best practices based on DevOps methodology, in a CI/CD environment.
             </p>
           )}
         >
