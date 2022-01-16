@@ -1,11 +1,12 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import {
-  useCallback, useEffect, useMemo, useState,
+  useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faFacebookSquare, faLinkedin, faTwitterSquare,
+  faFacebookSquare, faLinkedin, faSpotify, faTwitterSquare,
 } from '@fortawesome/free-brands-svg-icons';
 import GameStrip from '../components/game-strip/GameStrip';
 import Navigation from '../components/navigation/Navigation';
@@ -17,6 +18,7 @@ import gablife from '../public/gablife.jpg';
 import rabbit from '../public/rabbit.png';
 
 const Life: NextPage = () => {
+  const musicRef = useRef<HTMLAudioElement>(null);
   const [hasStartedOnce, setStartedOnce] = useState(false);
   const [shouldStart, setShouldStart] = useState(false);
   const [startedAt, setStartedAt] = useState<number>();
@@ -33,6 +35,10 @@ const Life: NextPage = () => {
     setStartedOnce(true);
     setShouldStart(true);
     setIsEnded(false);
+
+    if (musicRef.current) {
+      musicRef.current.play();
+    }
   }, []);
 
   const onStart = useCallback(() => {
@@ -44,6 +50,11 @@ const Life: NextPage = () => {
     setStartedAt(undefined);
     setShouldStart(false);
     setIsEnded(true);
+
+    if (musicRef.current) {
+      musicRef.current.pause();
+      musicRef.current.currentTime = 0;
+    }
   }, []);
 
   useEffect(() => {
@@ -71,16 +82,16 @@ const Life: NextPage = () => {
 
       <main className="px-4 py-4 md:py-8 max-w-[64rem] mx-auto">
         {startedAt !== undefined && (
-        <h2 className="text-2xl font-extrabold flex justify-center">
-          <span className="relative">
-            Score:
-            {' '}
-            {score}
-            <span className="absolute animate-ping right-0 top-0">
+          <h2 className="text-2xl font-extrabold flex justify-center">
+            <span className="relative">
+              Score:
+              {' '}
               {score}
+              <span className="absolute animate-ping right-0 top-0">
+                {score}
+              </span>
             </span>
-          </span>
-        </h2>
+          </h2>
         )}
 
         <div className="relative h-72">
@@ -199,12 +210,40 @@ const Life: NextPage = () => {
             </>
           )}
         </div>
+        <audio
+          ref={musicRef}
+          loop
+        >
+          <source
+            type="audio/mp3"
+            src="/gablife-loop.mp3"
+          />
+        </audio>
 
         <SelfTypingParagraphs
           className="font-bold mt-4 h-32"
           values={transcript}
         />
       </main>
+
+      <footer className="text-center py-4">
+        Music kindly provided by
+        {' '}
+        <a
+          href="https://open.spotify.com/artist/11oyxf21mv31PEUOIkUaKH"
+          target="_blank"
+          rel="noreferrer"
+          className="underline"
+        >
+
+          Illegal Character
+        </a>
+        {' '}
+        <FontAwesomeIcon
+          icon={faSpotify}
+          size="1x"
+        />
+      </footer>
     </div>
   );
 };
