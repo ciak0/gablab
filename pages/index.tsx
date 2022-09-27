@@ -9,6 +9,7 @@ import Navigation from '../components/navigation/Navigation';
 import SkillSearch from '../components/skill-search/SkillSearch';
 import { SKILLS } from '../constants';
 import logo from '../public/logo.jpg';
+import wasder from '../public/wasder.jpg';
 import dove from '../public/dove.jpg';
 import piksel from '../public/piksel.jpg';
 import justmetrics from '../public/justmetrics.jpg';
@@ -82,6 +83,35 @@ const Home: NextPage = () => (
 
         <Experience
           className="mb-8"
+          title="Senior Software Engineer | Contractor"
+          company={{
+            href: 'https://www.wasder.gg',
+            name: 'Wasder AB',
+            image: wasder,
+          }}
+          from={new Date(2022, 0, 15)}
+          location="Remote"
+          summary={(
+            <p className="mb-4">
+              Leading the development of the backend systems for the new Gamification project.
+            </p>
+          )}
+        >
+          <ul className="list-disc pl-6 mt-2">
+            <li>Coordination between the product stakeholders, development team, and external providers</li>
+            <li>Improving the development workflow by using DevOps agile methodology</li>
+            <li>System architecture design</li>
+            <li>Software design by using DDD patterns</li>
+            <li>Microservices development and deployment with logging, monitoring, and alerting systems</li>
+            <li>Establishing TDD and code quality best practices</li>
+            <li>Refactoring and uplifting of existing microservices</li>
+          </ul>
+        </Experience>
+
+        <div id="dove" className="relative -top-16" />
+
+        <Experience
+          className="mb-8"
           title="Senior Software Engineer"
           company={{
             href: 'https://www.dove.it',
@@ -105,7 +135,7 @@ const Home: NextPage = () => (
           <ul className="list-disc pl-6 mt-2">
             <li>Google Cloud platform services</li>
             <li>Bitbucket pipelines for automated builds and deployments with Docker and Kubernetes</li>
-            <li>Several microservices written in Kotlin or Node.js that rely on Postgres/MongoDb databases</li>
+            <li>Several microservices wrote in Kotlin or Node.js that rely on Postgres/MongoDb databases</li>
             <li>Apache Beam data streaming pipelines written in Kotlin for DWH and BI reports generation</li>
             <li>Serverless functions and event-driven Google Cloud Run micro-services written in Node.js</li>
             <li>UI components and web applications written in Typescript using React.js and Next.js</li>
@@ -138,19 +168,19 @@ const Home: NextPage = () => (
         >
           Most relevant activities were:
           <ul className="list-disc pl-6 mt-2">
-            <li>Leading the design and development of the next generation in-house CMS Server Side Rendering service written in Node.js and TypeScript.</li>
+            <li>Led the design and development of the next-generation in-house CMS Server Side Rendering service written in Node.js and TypeScript.</li>
             <li>
-              Took part in the design, development and test of several REST micro-services in Node.js, for the management and issuance of DRM video licenses,
-              management of users entitlement and payment flows.
+              Took part in designing, developing, and testing several REST micro-services in Node.js, for managing and issuing DRM video licenses,
+              management of users&apos; entitlement, and payment flows.
             </li>
             <li>
-              Took part in the design and implementation of the Piksel&apos;s HTML5 Video Player mostly in the development
-              of the following features: Smooth Streaming to MPEG-DASH translation, ability to play CENC PlayReady assets on Chrome,
-              Widevine and PlayReady DRM CENC support with additional custom data handling, In-Stream data tracks extension for
-              Google&apos;s Shaka Player, TTML text tracks support.
+              Design and implementation of the Piksel&apos;s HTML5 Video Player core features,
+              which then became registered patents: Smooth Streaming to MPEG-DASH translation,
+              ability to play CENC PlayReady assets on Chrome, Widevine, and PlayReady DRM CENC support with additional custom data handling,
+              In-Stream data tracks extension for Google&apos;s Shaka Player, TTML text tracks support.
             </li>
             <li>
-              Took part in the design and implementation of the Pixel&apos;s Real-Time Analytics system using Node.js
+              Took part in designing and implementing Pixel&apos;s Real-Time Analytics system using Node.js and Google Charts to deliver customizable dashboards showing real-time statistics on video content.
               and Google Charts in order to deliver customizable dashboards showing real-time statistics on video contents.
             </li>
             <li>Maintenance and development of proprietary CMS solution in Java and Javascript.</li>
