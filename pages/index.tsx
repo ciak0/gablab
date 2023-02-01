@@ -168,7 +168,7 @@ const Home: NextPage = () => (
         >
           Most relevant activities were:
           <ul className="list-disc pl-6 mt-2">
-            <li>Led the design and development of the next-generation in-house CMS Server Side Rendering service written in Node.js and TypeScript.</li>
+            <li>Led the design and development of the next-generation in-house CMS Server-Side Rendering service written in Node.js and TypeScript.</li>
             <li>
               Took part in designing, developing, and testing several REST micro-services in Node.js, for managing and issuing DRM video licenses,
               management of users&apos; entitlement, and payment flows.
@@ -181,7 +181,6 @@ const Home: NextPage = () => (
             </li>
             <li>
               Took part in designing and implementing Pixel&apos;s Real-Time Analytics system using Node.js and Google Charts to deliver customizable dashboards showing real-time statistics on video content.
-              and Google Charts in order to deliver customizable dashboards showing real-time statistics on video contents.
             </li>
             <li>Maintenance and development of proprietary CMS solution in Java and Javascript.</li>
           </ul>
@@ -324,13 +323,13 @@ const Home: NextPage = () => (
         </h2>
 
         <p className="mt-8 mb-4">
-          Luckily I had the great opportunity to register two patents back when I worked in the
+          When I worked in
           {' '}
           <a href="#piksel" className="underline">
             Piksel R&amp;D
           </a>
-          .
-          Both were co-authored by my managers at that time.
+          , I had the opportunity to register two patents and co-authored them with my managers at that time.
+          {' '}
           You can have a look at them here:
         </p>
 
