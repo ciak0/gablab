@@ -6,8 +6,10 @@ describe('components/Expandable', () => {
   it('should render correctly', () => {
     expect(TestRenderer.create(
       <Expandable
-        summary=""
-      />,
+        summary="something"
+      >
+        some more thing
+      </Expandable>,
     ).toJSON()).toMatchSnapshot();
   });
 

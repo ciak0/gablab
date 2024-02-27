@@ -4,7 +4,7 @@ exports[`components/Expandable should render correctly 1`] = `
 <div
   className=""
 >
-  
+  something
   <button
     className="block mt-4 text-sm text-neutral-500"
     onClick={[Function]}
