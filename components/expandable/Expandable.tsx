@@ -26,7 +26,7 @@ const Expandable: FunctionComponent<ExpandableProps> = ({
   return (
     <div className={className}>
       {summary}
-      {!isExpanded && (
+      {!isExpanded && children && (
         <button
           className="block mt-4 text-sm text-neutral-500"
           type="button"

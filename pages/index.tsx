@@ -9,6 +9,7 @@ import Navigation from '../components/navigation/Navigation';
 import SkillSearch from '../components/skill-search/SkillSearch';
 import { SKILLS } from '../constants';
 import logo from '../public/logo.jpg';
+import pallyy from '../public/pallyy.jpg';
 import wasder from '../public/wasder.jpg';
 import dove from '../public/dove.jpg';
 import piksel from '../public/piksel.jpg';
@@ -83,17 +84,35 @@ const Home: NextPage = () => (
 
         <Experience
           className="mb-8"
-          title="Senior Software Engineer | Contractor"
+          title="Principal Software Engineer | Freelance"
+          company={{
+            href: 'https://www.pallyy.com',
+            name: 'Pallyy Co. Ltd',
+            image: pallyy,
+          }}
+          from={new Date(2023, 9, 1)}
+          location="Remote"
+          summary={(
+            <p className="mb-4">
+              Leading the development of Pallyy, transitioning it from a solo project to a startup company.
+            </p>
+          )}
+        />
+
+        <Experience
+          className="mb-8"
+          title="Senior Software Engineer | Freelance"
           company={{
             href: 'https://www.wasder.gg',
             name: 'Wasder AB',
             image: wasder,
           }}
           from={new Date(2022, 0, 15)}
+          to={new Date(2023, 8, 1)}
           location="Remote"
           summary={(
             <p className="mb-4">
-              Leading the development of the backend systems for the new Gamification project.
+              Led the development of the backend systems for the Game of Wasder (the gamification system of the platform).
             </p>
           )}
         >
@@ -197,7 +216,6 @@ const Home: NextPage = () => (
           from={new Date(2016, 3, 1)}
           to={new Date(2018, 8, 31)}
           location="Remote"
-          fullTime
           summary={(
             <p className="mb-4">
               Co-founded one of the most accurate Instagram analytics app available on the web.
